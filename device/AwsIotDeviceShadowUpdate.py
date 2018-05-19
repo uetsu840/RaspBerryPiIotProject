@@ -4,7 +4,7 @@
 # In[1]:
 
 
-certificate_folder = "C:/Users/Tomonobu/Documents/home/Keyence/ラズパイIoT勉強会/証明書_TestVirtualMachine/"
+certificate_folder = "C:/Users/Tomonobu/Documents/home/Keyence/RaspPiIot/証明書_TestVirtualMachine/"
 
 
 # In[2]:

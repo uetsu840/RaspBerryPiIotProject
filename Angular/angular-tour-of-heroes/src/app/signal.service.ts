@@ -15,12 +15,11 @@ const httpOptions = {
 export class SignalService {
   private SignalApiUrl = 'https://api.iot-test.suzaku-ok.jp/signal';  // URL to web api
 
-
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  /** GET heroes from the server */
+  /* GET signal status from the server */
   getSignals(): Observable<Signal[]> {
     return this.http.get<Signal[]>(this.SignalApiUrl)
       .pipe(

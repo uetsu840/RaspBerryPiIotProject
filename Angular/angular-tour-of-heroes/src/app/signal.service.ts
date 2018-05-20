@@ -12,8 +12,8 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class HeroService {
-  private heroesUrl = 'https://api.iot-test.suzaku-ok.jp/switch';  // URL to web api
+export class SignalService {
+  private SignalApiUrl = 'https://api.iot-test.suzaku-ok.jp/switch';  // URL to web api
 
 
   constructor(
@@ -22,16 +22,16 @@ export class HeroService {
 
   /** GET heroes from the server */
   getSignals(): Observable<Signal[]> {
-    return this.http.get<Signal[]>(this.heroesUrl)
+    return this.http.get<Signal[]>(this.SignalApiUrl)
       .pipe(
-      tap(heroes => this.log(`fetched heroes`)),
+      tap(signals => this.log(`fetched heroes`)),
       catchError(this.handleError('getSignals', []))
       );
   }
   
   /** GET signal by id. Will 404 if id not found */
   getHero(id: number): Observable<Signal> {
-    const url = `${this.heroesUrl}/${id}`;
+    const url = `${this.SignalApiUrl}/${id}`;
     return this.http.get<Signal>(url).pipe(
       tap(_ => this.log(`fetched signal id=${id}`)),
       catchError(this.handleError<Signal>(`getHero id=${id}`))
@@ -40,7 +40,7 @@ export class HeroService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
+    this.messageService.add('SignalService: ' + message);
   }
 
   /**
@@ -65,7 +65,7 @@ export class HeroService {
 
   /** PUT: update the signal on the server */
   updateHero(signal: Signal): Observable<any> {
-    return this.http.put(this.heroesUrl, signal, httpOptions).pipe(
+    return this.http.put(this.SignalApiUrl, signal, httpOptions).pipe(
       tap(_ => this.log(`updated signal id=${signal.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
@@ -73,8 +73,8 @@ export class HeroService {
 
   /** POST: add a new signal to the server */
   addHero(signal: Signal): Observable<Signal> {
-    return this.http.post<Signal>(this.heroesUrl, signal, httpOptions).pipe(
-      tap((signal: Signal) => this.log(`added signal w/ id=${signal.id}`)),
+    return this.http.post<Signal>(this.SignalApiUrl, signal, httpOptions).pipe(
+      tap((signals: Signal) => this.log(`added signal w/ id=${signal.id}`)),
       catchError(this.handleError<Signal>('addHero'))
     );
   }

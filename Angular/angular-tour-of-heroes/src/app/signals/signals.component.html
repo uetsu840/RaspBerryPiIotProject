@@ -1,0 +1,15 @@
+
+<h2>転轍機</h2>
+<div>
+  <label>Signal name:
+    <input #heroname_old />
+  </label>
+</div>
+<ul class="heroes">
+  <li *ngFor="let signal of signals">
+    <a routerLink="/detail/{{signals.id}}">
+      <span class="badge">{{signal.id}}</span> {{signal.name}}
+    </a>
+  </li>
+</ul>
+

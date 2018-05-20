@@ -1,3 +1,14 @@
-<p>
-  switches works!
-</p>
+<h2>
+  転轍機</h2>
+<div>
+  <label>Switch name:
+    <input #heroname_old />
+  </label>
+</div>
+<ul class="heroes">
+  <li *ngFor="let switch of switches">
+    <a routerLink="/detail/{{switches.id}}">
+      <span class="badge">{{switch.id}}</span> {{switch.name}}
+    </a>
+  </li>
+</ul>

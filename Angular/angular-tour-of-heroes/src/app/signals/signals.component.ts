@@ -8,11 +8,6 @@ import { SignalService } from '../signal.service';
   styleUrls: ['./signals.component.css']
 })
 export class SignalsComponent implements OnInit {
-  signal: Signal = {
-    id: 1,
-    name: 'Windstorm',
-    position: 0
-  };
   signals: Signal[];
 
   constructor(private signalService: SignalService) { }
@@ -32,7 +27,7 @@ export class SignalsComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.signalService.addHero({ name } as Signal)
+    this.signalService.addSignal({ name } as Signal)
       .subscribe(signal => {
         this.signals.push(signal);
       });

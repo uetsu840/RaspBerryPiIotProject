@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { SwitchesComponent } from './switches/switches.component';
+import { SwitchDetailComponent } from './switch-detail/switch-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { InMemoryDataService } from './in-memory-data.service';
     SignalsComponent,
     SignalDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    SwitchesComponent,
+    SwitchDetailComponent
   ],
   imports: [
     BrowserModule,

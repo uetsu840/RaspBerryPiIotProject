@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SignalService {
-  private SignalApiUrl = 'https://api.iot-test.suzaku-ok.jp/switch';  // URL to web api
+  private SignalApiUrl = 'https://api.iot-test.suzaku-ok.jp/signal';  // URL to web api
 
 
   constructor(
@@ -28,17 +28,17 @@ export class SignalService {
       catchError(this.handleError('getSignals', []))
       );
   }
-  
+
   /** GET signal by id. Will 404 if id not found */
-  getHero(id: number): Observable<Signal> {
+  getSignal(id: number): Observable<Signal> {
     const url = `${this.SignalApiUrl}/${id}`;
     return this.http.get<Signal>(url).pipe(
       tap(_ => this.log(`fetched signal id=${id}`)),
-      catchError(this.handleError<Signal>(`getHero id=${id}`))
+      catchError(this.handleError<Signal>(`getSignal id=${id}`))
     );
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a SignalService message with the MessageService */
   private log(message: string) {
     this.messageService.add('SignalService: ' + message);
   }
@@ -64,18 +64,18 @@ export class SignalService {
   }
 
   /** PUT: update the signal on the server */
-  updateHero(signal: Signal): Observable<any> {
+  updateSignal(signal: Signal): Observable<any> {
     return this.http.put(this.SignalApiUrl, signal, httpOptions).pipe(
       tap(_ => this.log(`updated signal id=${signal.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+      catchError(this.handleError<any>('updateSignal'))
     );
   }
 
   /** POST: add a new signal to the server */
-  addHero(signal: Signal): Observable<Signal> {
+  addSignal(signal: Signal): Observable<Signal> {
     return this.http.post<Signal>(this.SignalApiUrl, signal, httpOptions).pipe(
       tap((signals: Signal) => this.log(`added signal w/ id=${signal.id}`)),
-      catchError(this.handleError<Signal>('addHero'))
+      catchError(this.handleError<Signal>('addSignal'))
     );
   }
 }

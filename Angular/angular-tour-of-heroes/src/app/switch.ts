@@ -1,6 +1,5 @@
-export class Signal {
+export class Switch {
     id: number;
     name: string;
     position: number;
-    indication: number;
 }

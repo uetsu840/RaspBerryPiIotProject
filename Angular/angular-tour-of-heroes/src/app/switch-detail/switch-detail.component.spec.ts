@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignalDetailComponent } from './signal-detail.component';
+import { SwitchDetailComponent } from './switch-detail.component';
 
-describe('SignalDetailComponent', () => {
-  let component: SignalDetailComponent;
-  let fixture: ComponentFixture<SignalDetailComponent>;
+describe('SwitchDetailComponent', () => {
+  let component: SwitchDetailComponent;
+  let fixture: ComponentFixture<SwitchDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignalDetailComponent ]
+      declarations: [ SwitchDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignalDetailComponent);
+    fixture = TestBed.createComponent(SwitchDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

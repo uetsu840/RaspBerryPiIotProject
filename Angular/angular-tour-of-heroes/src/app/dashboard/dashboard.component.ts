@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Signal } from '../signal';
+import { Switch } from '../switch';
 import { SignalService } from '../signal.service';
+import { SwitchService } from '../switch.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,16 +10,24 @@ import { SignalService } from '../signal.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  heroes: Signal[] = [];
+  signals:  Signal[] = [];
+  switches: Switch[] = [];
 
-  constructor(private signalService: SignalService) { }
+  constructor(private signalService: SignalService,
+              private switchService: SwitchService) { }
 
   ngOnInit() {
     this.getSignals();
+    this.getSwitches();
   }
 
   getSignals(): void {
     this.signalService.getSignals()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+      .subscribe(signals => this.signals = signals);
+  }
+
+  getSwitches(): void {
+    this.switchService.getSwitches()
+      .subscribe(switches => this.switches = switches);
   }
 }

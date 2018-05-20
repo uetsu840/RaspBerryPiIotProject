@@ -20,15 +20,15 @@ export class SignalDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getHero();
+    this.getSignal();
   }
 
-  getHero(): void {
+  getSignal(): void {
     const id = +this.route.snapshot.paramMap.get('id');
 
     console.log('------------');
     console.log(id);
-    this.signalService.getHero(id)
+    this.signalService.getSignal(id)
       .subscribe(signal => {
         this.signal = signal;
         console.log('>>>>>>>>>>');
@@ -36,7 +36,7 @@ export class SignalDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.signalService.updateHero(this.signal)
+    this.signalService.updateSignal(this.signal)
       .subscribe(() => this.goBack());
   }
 

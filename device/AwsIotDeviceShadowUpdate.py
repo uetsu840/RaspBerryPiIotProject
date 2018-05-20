@@ -115,13 +115,13 @@ myAWSIoTMQTTShadowClient.connect()
 # MQTTClient.configureOfflinePublishQueueing(yourQueueSize, yourDropBehavior)
 
 # Create a deviceShadow with persistent subscription
-deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWithName("test_vm_ubuntu_2", True)
+deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWith__name_old("test_vm_ubuntu_2", True)
 
 # Delete shadow JSON doc
 deviceShadowHandler.shadowDelete(customShadowCallback_Delete, 5)
 
 # Create a deviceShadow with persistent subscription
-# deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWithName("MyBot", True)
+# deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWith__name_old("MyBot", True)
 
 # Listen on deltas
 deviceShadowHandler.shadowRegisterDeltaCallback(customShadowCallback_Delta)

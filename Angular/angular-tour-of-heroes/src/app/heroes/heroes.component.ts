@@ -10,7 +10,8 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
   hero: Hero = {
     id: 1,
-    name: 'Windstorm'
+    name: 'Windstorm',
+    position: 0
   };
   heroes: Hero[];
 

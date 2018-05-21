@@ -1,1 +1,26 @@
 @charset "utf-8";
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:visited {
+  color:white
+}
+
+.nav_area {
+    width: 800px;
+}
+
+.nav_item {
+    float: left;
+    height: 40px;
+    width: 150px;
+    margin: 10px;
+    padding-left: 10px;
+    padding-top:10px;
+    background-color: rgb(47, 47, 49);
+    color: white;
+    border-radius: 6px;
+}

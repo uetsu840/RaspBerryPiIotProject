@@ -30,6 +30,22 @@ export class SignalsComponent implements OnInit, OnDestroy {
       .subscribe(signals => {
         console.log(signals);
         this.signals = signals;
+        for (const signal of signals) {
+          switch (signal.indication) {
+            case 0:
+              signal.display_style = 'status_red';
+              break;
+            case 1:
+              signal.display_style = 'status_orange';
+              break;
+            case 2:
+              signal.display_style = 'status_green';
+              break;
+            default:
+              signal.display_style = 'status_red';
+              break;
+          }
+        }
       });
   }
 

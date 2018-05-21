@@ -1,10 +1,17 @@
 <h1>
   {{title}}
 </h1>
-<nav>
-  <a routerLink="/dashboard">ダッシュボード</a>
-  <a routerLink="/signals">信号機</a>
-  <a routerLink="/switches">転轍機</a>  
-</nav>
+<div class="nav_area">
+  <div class="nav_item">
+    <a routerLink="/dashboard">ダッシュボード</a>
+  </div>
+  <div class="nav_item">
+    <a routerLink="/signals">信号機</a>
+  </div>
+  <div class="nav_item">
+    <a routerLink="/switches">転轍機</a>
+  </div>
+</div>
+<div style="clear:both;"></div>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

@@ -5,10 +5,11 @@
     <input #heroname_old />
   </label>
 </div>
-<ul class="heroes">
+<ul class="switches">
   <li *ngFor="let switch of switches">
     <a routerLink="/detail/{{switches.id}}">
-      <span class="badge">{{switch.id}}</span> {{switch.name}}
+      <div class="name">{{switch.name}}</div>
+      <div [class]=switch.display_style></div>
     </a>
   </li>
 </ul>

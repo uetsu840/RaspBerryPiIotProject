@@ -7,9 +7,8 @@
             box-sizing: border-box;
 }
 
-.selected {
-  background-color: #CFD8DC !important;
-  color: white;
+.wrapper {
+  width: 600px;
 }
 
 .signals ul {
@@ -30,6 +29,16 @@
   padding-left: 10px;
   height: 40px;
   width: 100px;
+}
+
+.signals .description {
+  margin-top: 10px;
+  background:#CFD8DC;
+  float: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 40px;
+  width: 200px;
 }
 
 .signals .status_off {

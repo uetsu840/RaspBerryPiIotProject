@@ -1,16 +1,13 @@
-<h2>
-  転轍機</h2>
-<div>
-  <label>Switch name:
-    <input #heroname_old />
-  </label>
+<div class="wrapper">
+  <h2>転轍機</h2>
+  <ul class="switches">
+    <li *ngFor="let switch of switches">
+      <a routerLink="/detail/{{switches.id}}">
+        <div class="name">{{switch.name}}</div>
+        <div class="description">{{switch.description}}</div>
+        <div [class]=switch.display_style_normal></div>
+        <div [class]=switch.display_style_reverse></div>
+      </a>
+    </li>
+  </ul>
 </div>
-<ul class="switches">
-  <li *ngFor="let switch of switches">
-    <a routerLink="/detail/{{switches.id}}">
-      <div class="name">{{switch.name}}</div>
-      <div [class]=switch.display_style_normal></div>
-      <div [class]=switch.display_style_reverse></div>
-    </a>
-  </li>
-</ul>

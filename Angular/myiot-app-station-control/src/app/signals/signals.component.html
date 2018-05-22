@@ -1,13 +1,15 @@
 
-<h2>信号機</h2>
-<ul class="signals">
-  <li *ngFor="let signal of signals">
-    <a routerLink="/detail/{{signals.id}}">
-      <div class="name">{{signal.name}}</div> 
-      <div [class]=signal.display_style_red></div>
-      <div [class]=signal.display_style_orange></div>
-      <div [class]=signal.display_style_green></div>
-    </a>
-  </li>
-</ul>
-
+<div class="wrapper">
+  <h2>信号機</h2>
+  <ul class="signals">
+    <li *ngFor="let signal of signals">
+      <a routerLink="/detail/{{signals.id}}">
+        <div class="name">{{signal.name}}</div>
+        <div class="description">{{signal.description}}</div>
+        <div [class]=signal.display_style_red></div>
+        <div [class]=signal.display_style_orange></div>
+        <div [class]=signal.display_style_green></div>
+      </a>
+    </li>
+  </ul>
+</div>

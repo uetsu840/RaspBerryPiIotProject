@@ -7,6 +7,10 @@
             box-sizing: border-box;
 }
 
+.wrapper {
+  width: 600px;
+}
+
 .switches li {
   clear: both;
   list-style: none;
@@ -24,6 +28,16 @@
   padding-left: 10px;
   height: 40px;
   width: 100px;
+}
+
+.switches .description {
+  margin-top: 10px;
+  background:#CFD8DC;
+  float: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 40px;
+  width: 200px;
 }
 
 .switches .light_off {

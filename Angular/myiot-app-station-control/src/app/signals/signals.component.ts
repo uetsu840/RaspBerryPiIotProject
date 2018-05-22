@@ -31,18 +31,20 @@ export class SignalsComponent implements OnInit, OnDestroy {
         console.log(signals);
         this.signals = signals;
         for (const signal of signals) {
+          signal.display_style_red    = 'status_off';
+          signal.display_style_orange = 'status_off';
+          signal.display_style_green  = 'status_off';
           switch (signal.indication) {
             case 0:
-              signal.display_style = 'status_red';
+              signal.display_style_red    = 'status_red';
               break;
             case 1:
-              signal.display_style = 'status_orange';
+              signal.display_style_orange = 'status_orange';
               break;
             case 2:
-              signal.display_style = 'status_green';
+              signal.display_style_green  = 'status_green';
               break;
             default:
-              signal.display_style = 'status_red';
               break;
           }
         }

@@ -1,12 +1,21 @@
 /* SwitchesComponent's private CSS styles */
-.selected {
-  background-color: #CFD8DC !important;
-  color: white;
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+         -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 .switches li {
   clear: both;
+  list-style: none;
 }
+
+.switches ul {
+  list-style: none;
+}
+
 .switches .name {
   margin-top: 10px;
   background:#CFD8DC;
@@ -17,21 +26,40 @@
   width: 100px;
 }
 
-.switches .position_normal {
+.switches .light_off {
   margin-top: 10px;
   display: inline-block;
   padding-top: 10px;
   padding-left: 10px;
+  border-width: 1px;
+  border: solid;
+  border-color: darkgray;
+  height: 40px;
+  width: 60px;
+  background: gray;
+}
+
+.switches .light_blue {
+  margin-top: 10px;
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 10px;
+  border-width: 1px;
+  border: solid;
+  border-color: darkgray;
   height: 40px;
   width: 60px;
   background: rgb(10, 4, 92);
 }
 
-.switches .position_reverse {
+.switches .light_orange {
   margin-top: 10px;
   display: inline-block;
   padding-top: 10px;
   padding-left: 10px;
+  border-width: 1px;
+  border: solid;
+  border-color: darkgray;
   height: 40px;
   width: 60px;
   background: rgb(219, 118, 3);

@@ -32,15 +32,16 @@ export class SwitchesComponent implements OnInit, OnDestroy {
         console.log(switches);
         this.switches = switches;
         for (const m_switch of switches) {
+          m_switch.display_style_normal = 'light_off';
+          m_switch.display_style_reverse = 'light_off';
           switch (m_switch.position) {
             case 0:
-              m_switch.display_style = 'position_normal';
+              m_switch.display_style_normal = 'light_blue';
               break;
             case 1:
-              m_switch.display_style = 'position_reverse';
+              m_switch.display_style_reverse = 'light_orange';
               break;
             default:
-              m_switch.display_style = 'status_red';
               break;
           }
         }

@@ -4,7 +4,9 @@
   <li *ngFor="let signal of signals">
     <a routerLink="/detail/{{signals.id}}">
       <div class="name">{{signal.name}}</div> 
-      <div [class]=signal.display_style></div>
+      <div [class]=signal.display_style_red></div>
+      <div [class]=signal.display_style_orange></div>
+      <div [class]=signal.display_style_green></div>
     </a>
   </li>
 </ul>

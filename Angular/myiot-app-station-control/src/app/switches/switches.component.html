@@ -9,7 +9,8 @@
   <li *ngFor="let switch of switches">
     <a routerLink="/detail/{{switches.id}}">
       <div class="name">{{switch.name}}</div>
-      <div [class]=switch.display_style></div>
+      <div [class]=switch.display_style_normal></div>
+      <div [class]=switch.display_style_reverse></div>
     </a>
   </li>
 </ul>

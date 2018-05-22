@@ -1,12 +1,27 @@
 /* SignalesComponent's private CSS styles */
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+         -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
 .selected {
   background-color: #CFD8DC !important;
   color: white;
 }
 
+.signals ul {
+  list-style: none;
+}
+
 .signals li {
+  list-style: none;
   clear: both;
 }
+
+
 .signals .name {
   margin-top: 10px;
   background:#CFD8DC;
@@ -17,33 +32,43 @@
   width: 100px;
 }
 
+.signals .status_off {
+  margin-top: 10px;
+  display: inline-block;
+  border: solid;
+  border-color: darkgray;
+  height: 40px;
+  width: 40px;
+  background: gray;
+}
+
 .signals .status_red {
   margin-top: 10px;
   display: inline-block;
-  padding-top: 10px;
-  padding-left: 10px;
+  border: solid;
+  border-color: darkgray;
   height: 40px;
-  width: 60px;
+  width: 40px;
   background: red;
 }
 
 .signals .status_orange {
   margin-top: 10px;
   display: inline-block;
-  padding-top: 10px;
-  padding-left: 10px;
+  border: solid;
+  border-color: darkgray;
   height: 40px;
-  width: 60px;
+  width: 40px;
   background: orange;
 }
 
 .signals .status_green {
   margin-top: 10px;
   display: inline-block;
-  padding-top: 10px;
-  padding-left: 10px;
+  border: solid;
+  border-color: darkgray;
   height: 40px;
-  width: 60px;
+  width: 40px;
   background: green;
 }
 

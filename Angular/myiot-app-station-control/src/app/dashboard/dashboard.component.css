@@ -53,16 +53,11 @@ h4 {
 .grid-pad > [class*='col-']:last-of-type {
   padding-right: 20px;
 }
-@media (max-width: 600px) {
-  .module {
-    font-size: 10px;
-    max-height: 75px; }
-}
-@media (max-width: 1024px) {
-  .grid {
-    margin: 0;
-  }
-  .module {
-    min-width: 60px;
-  }
+
+.station_map {
+  width: 800px;
+  height: 400px;
+  border: solid;
+  position: relative;
+  background-color: darkgreen;
 }

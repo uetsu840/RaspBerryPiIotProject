@@ -5,11 +5,15 @@ import { SignalService } from '../signal.service';
 import { SwitchService } from '../switch.service';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
+declare var ControlBoard: any;
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+
 export class DashboardComponent implements OnInit, OnDestroy {
   signals:  Signal[] = [];
   switches: Switch[] = [];

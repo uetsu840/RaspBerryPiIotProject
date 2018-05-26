@@ -7,27 +7,21 @@ import { SignalDisplay } from './signal-display';
   styleUrls: ['./control-panel.component.css']
 })
 export class ControlPanelComponent implements OnInit {
-  signal_3L4L: SignalDisplay = {
-    posx: 900,
-    posy: 520,
-    rotate: 180,
-    name1: '3L',
-    name2: '4L',
-    text1_posx: 850,
-    text1_posy: 440,
-    text2_posx: 840,
-    text2_posy: 525
-  };
   signal_1R2R: SignalDisplay = {
-    posx: 10,
-    posy: 220,
+    signal_pos: { x: 10, y: 220 },
     rotate: 0,
     name1: '1R',
     name2: '2R',
-    text1_posx: 100,
-    text1_posy: 220,
-    text2_posx: 90,
-    text2_posy: 340
+    text1_pos: { x: 100, y: 220 },
+    text2_pos: { x: 90, y: 340 }
+  };
+  signal_3L4L: SignalDisplay = {
+    signal_pos: { x: 900, y: 520 },
+    rotate: 180,
+    name1: '3L',
+    name2: '4L',
+    text1_pos: { x: 850, y: 440 },
+    text2_pos: { x: 840, y: 525 },
   };
 
 

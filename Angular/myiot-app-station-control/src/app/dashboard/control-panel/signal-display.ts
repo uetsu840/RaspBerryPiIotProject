@@ -1,11 +1,10 @@
+import { Position } from './position';
+
 export class SignalDisplay {
-    posx: number;
-    posy: number;
+    signal_pos: Position;
     rotate: number;
     name1: string;
     name2: string;
-    text1_posx: number;
-    text1_posy: number;
-    text2_posx: number;
-    text2_posy: number;
+    text1_pos: Position;
+    text2_pos: Position;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { SignalDisplay } from '../signal-display';
 
 @Component({
@@ -7,10 +7,13 @@ import { SignalDisplay } from '../signal-display';
   styleUrls: ['./two-way-signal-r.component.css']
 })
 
-export class TwoWaySignalRComponent implements OnInit {
+export class TwoWaySignalRComponent implements OnInit, OnChanges {
   @Input() signal: SignalDisplay;
 
   ngOnInit() {
   }
 
+  ngOnChanges() {
+    this.signal.symbol_name = 'signal' + this.signal.name1 + this.signal.name2; 
+  }
 }

@@ -1,6 +1,13 @@
-<svg:use attr.x="{{signal.signal_pos.x}}" attr.y="{{signal.signal_pos.y}}" 
-          xlink:href="#signal_single_base"
-          attr.transform="rotate({{signal.rotate}} {{signal.signal_pos.x}} {{signal.signal_pos.y}})"></svg:use>
-<svg:text attr.x="{{signal.text1_pos.x}}" attr.y="{{signal.text1_pos.y}}" fill="white" font-size="30">
-  {{signal.name1}}
-</svg:text>
+<svg:g>
+  <symbol attr.id="{{signal.symbol_name}}">
+    <line x1="2" y1="10" x2="2" y2="40" stroke="white" stroke-width="4" />
+    <line x1="0" y1="25" x2="50" y2="25" stroke="white" stroke-width="4" />
+    <circle cx="75" cy="25" r="23" stroke="white" fill="dimgray" stroke-width="4" />
+  </symbol>
+  <svg:use attr.x="{{signal.signal_pos.x}}" attr.y="{{signal.signal_pos.y}}" 
+            attr.xlink:href="#{{signal.symbol_name}}"
+            attr.transform="rotate({{signal.rotate}} {{signal.signal_pos.x}} {{signal.signal_pos.y}})"></svg:use>
+  <svg:text attr.x="{{signal.text1_pos.x}}" attr.y="{{signal.text1_pos.y}}" fill="white" font-size="30">
+    {{signal.name1}}
+  </svg:text>
+</svg:g>

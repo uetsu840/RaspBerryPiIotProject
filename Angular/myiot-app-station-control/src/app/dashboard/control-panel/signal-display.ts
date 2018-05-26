@@ -1,6 +1,7 @@
 import { Position } from './position';
 
 export class SignalDisplay {
+    symbol_name: string;
     signal_pos: Position;
     rotate: number;
     name1: string;

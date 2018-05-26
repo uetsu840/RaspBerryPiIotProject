@@ -45,15 +45,12 @@
   <line x1="205" y1="350" x2="695" y2="350" stroke="white" stroke-width="15" />
   <line x1="205" y1="400" x2="695" y2="400" stroke="white" stroke-width="15" />
 
-  <use x="10" y="220" xlink:href="#signal_2w_l_base"></use>
-  <text x="100" y="220" fill="white" font-size="30">1R</text>
-  <text x="90" y="340" fill="white" font-size="30">2R</text>
+  <svg:g app-two-way-signal-r [signal]="signal_3L4L" />
+  <svg:g app-two-way-signal-r [signal]="signal_1R2R" />
   <use x="650" y="270" xlink:href="#signal_single_base"></use>
   <text x="700" y="260" fill="white" font-size="30">3R</text>
   <use x="650" y="440" xlink:href="#signal_single_base"></use>
   <text x="700" y="520" fill="white" font-size="30">4R</text>
-
-  <svg:g app-two-way-signal-r />
   <use x="250" y="320" xlink:href="#signal_single_base" transform="rotate(180 250 320)"></use>
   <text x="150" y="260" fill="white" font-size="30">1L</text>
   <use x="250" y="490" xlink:href="#signal_single_base" transform="rotate(180 250 490)"></use>

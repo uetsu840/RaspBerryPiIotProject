@@ -1,4 +1,4 @@
-export class SingalDisplay {
+export class SignalDisplay {
     posx: number;
     posy: number;
     rotate: number;

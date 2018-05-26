@@ -6,6 +6,7 @@ import { SignalDisplay } from './signal-display';
   templateUrl: './control-panel.component.html',
   styleUrls: ['./control-panel.component.css']
 })
+
 export class ControlPanelComponent implements OnInit {
   signal_1R2R: SignalDisplay = {
     signal_pos: { x: 10, y: 220 },

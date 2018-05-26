@@ -47,14 +47,10 @@
 
   <svg:g app-two-way-signal-r [signal]="signal_3L4L" />
   <svg:g app-two-way-signal-r [signal]="signal_1R2R" />
-  <use x="650" y="270" xlink:href="#signal_single_base"></use>
-  <text x="700" y="260" fill="white" font-size="30">3R</text>
-  <use x="650" y="440" xlink:href="#signal_single_base"></use>
-  <text x="700" y="520" fill="white" font-size="30">4R</text>
-  <use x="250" y="320" xlink:href="#signal_single_base" transform="rotate(180 250 320)"></use>
-  <text x="150" y="260" fill="white" font-size="30">1L</text>
-  <use x="250" y="490" xlink:href="#signal_single_base" transform="rotate(180 250 490)"></use>
-  <text x="150" y="520" fill="white" font-size="30">2L</text>
+  <svg:g app-single-signal [signal]="signal_1L" />
+  <svg:g app-single-signal [signal]="signal_2L" />
+  <svg:g app-single-signal [signal]="signal_3R" />
+  <svg:g app-single-signal [signal]="signal_4R" />
 
   <use x="100" y="50" xlink:href="#status_switch_normal"></use>
   <use x="200" y="50" xlink:href="#status_switch_normal"></use>

@@ -1,3 +1,6 @@
-<p>
-  single-signal works!
-</p>
+<svg:use attr.x="{{signal.signal_pos.x}}" attr.y="{{signal.signal_pos.y}}" 
+          xlink:href="#signal_single_base"
+          attr.transform="rotate({{signal.rotate}} {{signal.signal_pos.x}} {{signal.signal_pos.y}})"></svg:use>
+<svg:text attr.x="{{signal.text1_pos.x}}" attr.y="{{signal.text1_pos.y}}" fill="white" font-size="30">
+  {{signal.name1}}
+</svg:text>

@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SwitchesComponent } from './switches/switches.component';
 import { SwitchDetailComponent } from './switch-detail/switch-detail.component';
+import { ControlPanelComponent } from './dashboard/control-panel/control-panel.component';
+import { SingleSignalComponent } from './dashboard/control-panel/single-signal/single-signal.component';
+import { TwoWaySignalRComponent } from './dashboard/control-panel/two-way-signal-r/two-way-signal-r.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { SwitchDetailComponent } from './switch-detail/switch-detail.component';
     MessagesComponent,
     DashboardComponent,
     SwitchesComponent,
-    SwitchDetailComponent
+    SwitchDetailComponent,
+    ControlPanelComponent,
+    SingleSignalComponent,
+    TwoWaySignalRComponent
   ],
   imports: [
     BrowserModule,

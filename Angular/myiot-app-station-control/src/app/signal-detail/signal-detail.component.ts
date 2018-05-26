@@ -12,7 +12,7 @@ import { SignalService } from '../signal.service';
 })
 export class SignalDetailComponent implements OnInit {
   @Input() signal: Signal;
-  
+
   constructor(
     private route: ActivatedRoute,
     private signalService: SignalService,

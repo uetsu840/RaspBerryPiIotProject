@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Signal } from '../signal';
 import { Switch } from '../switch';

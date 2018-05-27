@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LeverDisplay } from '../lever-display';
 
 @Component({
@@ -8,6 +8,7 @@ import { LeverDisplay } from '../lever-display';
 })
 export class LeverSwitchComponent implements OnInit {
   @Input() lever: LeverDisplay;
+  @Output() event = new EventEmitter();
 
   constructor() { }
 
@@ -16,17 +17,21 @@ export class LeverSwitchComponent implements OnInit {
 
   onMouseDownLeft() {
     this.lever.toLeft();
+    this.event.emit();
   }
 
   onMouseUpLeft() {
     this.lever.toCenter();
+    this.event.emit();
   }
 
   onMouseDownRight() {
     this.lever.toRight();
+    this.event.emit();
   }
 
   onMouseUpRight() {
     this.lever.toCenter();
+    this.event.emit();
   }
 }

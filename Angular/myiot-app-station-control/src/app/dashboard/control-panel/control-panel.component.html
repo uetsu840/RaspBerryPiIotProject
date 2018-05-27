@@ -23,11 +23,11 @@
   <svg:g app-single-signal [signal]="signals['3R']" />
   <svg:g app-single-signal [signal]="signals['4R']" />
 
-  <svg:g app-lever-signal [lever]="levers['1']"></svg:g>
-  <svg:g app-lever-signal [lever]="levers['2']"></svg:g>
-  <svg:g app-lever-signal [lever]="levers['3']"></svg:g>
-  <svg:g app-lever-signal [lever]="levers['4']"></svg:g>
-  <svg:g app-lever-switch [lever]="levers['11']"></svg:g>
-  <svg:g app-lever-switch [lever]="levers['21']"></svg:g>
+  <svg:g app-lever-signal [lever]="levers['1']" (event)=onEvent()></svg:g>
+  <svg:g app-lever-signal [lever]="levers['2']" (event)=onEvent()></svg:g>
+  <svg:g app-lever-signal [lever]="levers['3']" (event)=onEvent()></svg:g>
+  <svg:g app-lever-signal [lever]="levers['4']" (event)=onEvent()></svg:g>
+  <svg:g app-lever-switch [lever]="levers['11']" (event)=onEvent()></svg:g>
+  <svg:g app-lever-switch [lever]="levers['21']" (event)=onEvent()></svg:g>
 
 </svg>

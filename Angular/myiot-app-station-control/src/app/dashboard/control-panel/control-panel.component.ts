@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SignalDisplay } from './signal-display';
 import { LeverDisplay } from './lever-display';
+import { ControlPanelOutput } from '../control-panel-output';
 
 @Component({
   selector: 'app-control-panel',
@@ -9,6 +10,8 @@ import { LeverDisplay } from './lever-display';
 })
 
 export class ControlPanelComponent implements OnInit {
+  @Output() event = new EventEmitter<ControlPanelOutput>();
+
   signals: { [index: string]: SignalDisplay; } = {};
   levers: { [idnex: string]: LeverDisplay; } = {};
 
@@ -29,17 +32,20 @@ export class ControlPanelComponent implements OnInit {
     this.levers['21'] = new LeverDisplay({ x: 600, y: 575 }, '21');
   }
 
-  getSignalControl() {
-    const controlState: { [index: string]: number; } = {};
-    controlState['1L'] = this.levers['1L'].getStateL();
-    controlState['2L'] = this.levers['2L'].getStateL();
-    controlState['3L'] = this.levers['3L'].getStateL();
-    controlState['4L'] = this.levers['4L'].getStateL();
-    controlState['1R'] = this.levers['1L'].getStateR();
-    controlState['2R'] = this.levers['2L'].getStateR();
-    controlState['3R'] = this.levers['3L'].getStateR();
-    controlState['4R'] = this.levers['4L'].getStateR();
-
-    return controlState;
+  onEvent() {
+    const  control_panel_output: ControlPanelOutput = {SignalControl: { }, SwitchControl: { }};
+    control_panel_output.SignalControl['1L'] = this.levers['1'].getStateL();
+    control_panel_output.SignalControl['2L'] = this.levers['2'].getStateL();
+    control_panel_output.SignalControl['3L'] = this.levers['3'].getStateL();
+    control_panel_output.SignalControl['4L'] = this.levers['4'].getStateL();
+    control_panel_output.SignalControl['1R'] = this.levers['1'].getStateR();
+    control_panel_output.SignalControl['2R'] = this.levers['2'].getStateR();
+    control_panel_output.SignalControl['3R'] = this.levers['3'].getStateR();
+    control_panel_output.SignalControl['4R'] = this.levers['4'].getStateR();
+    control_panel_output.SwitchControl['11Nml'] = this.levers['11'].getStateL();
+    control_panel_output.SwitchControl['21Nml'] = this.levers['21'].getStateL();
+    control_panel_output.SwitchControl['11Rev'] = this.levers['11'].getStateR();
+    control_panel_output.SwitchControl['21Rev'] = this.levers['21'].getStateR();
+    this.event.emit(control_panel_output);
   }
 }

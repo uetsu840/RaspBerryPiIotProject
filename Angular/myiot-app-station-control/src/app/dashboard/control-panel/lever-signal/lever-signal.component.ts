@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LeverDisplay } from '../lever-display';
 
 @Component({
@@ -8,6 +8,8 @@ import { LeverDisplay } from '../lever-display';
 })
 export class LeverSignalComponent implements OnInit {
   @Input() lever: LeverDisplay;
+  @Output() event = new EventEmitter();
+
 
   constructor() { }
 
@@ -16,9 +18,11 @@ export class LeverSignalComponent implements OnInit {
 
   onClickLeft() {
     this.lever.toLeft();
+    this.event.emit();
   }
 
   onClickRight() {
     this.lever.toRight();
+    this.event.emit();
   }
 }

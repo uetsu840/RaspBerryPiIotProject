@@ -5,6 +5,7 @@ import { Switch } from '../switch';
 import { SignalService } from '../signal.service';
 import { SwitchService } from '../switch.service';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { ControlPanelOutput } from './control-panel-output';
 
 declare var ControlBoard: any;
 
@@ -20,7 +21,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   switches: Switch[] = [];
   interval_signal: NodeJS.Timer;
   interval_switch: NodeJS.Timer;
-  interval_put_status: NodeJS.Timer;
 
   constructor(private signalService: SignalService,
               private switchService: SwitchService) { }
@@ -30,13 +30,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getSwitches();
     this.interval_signal = setInterval(() => this.getSignals(), 1000);
     this.interval_switch = setInterval(() => this.getSwitches(), 1000);
-    this.interval_put_status = setInterval(() => this.updateControl(), 2000);
   }
 
   ngOnDestroy() {
     clearInterval(this.interval_signal);
     clearInterval(this.interval_switch);
-    clearInterval(this.interval_put_status);
   }
 
   getSignals(): void {
@@ -49,7 +47,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(switches => this.switches = switches);
   }
 
-  updateControl(): void {
-    console.log('update');
+  onControlUpdate(control: ControlPanelOutput): void {
+    console.log(control);
   }
 }

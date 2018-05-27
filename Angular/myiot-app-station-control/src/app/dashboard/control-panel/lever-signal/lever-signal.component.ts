@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LeverDisplay } from '../lever-display';
 
 @Component({
@@ -6,15 +6,11 @@ import { LeverDisplay } from '../lever-display';
   templateUrl: './lever-signal.component.html',
   styleUrls: ['./lever-signal.component.css']
 })
-export class LeverSignalComponent implements OnInit, OnChanges {
+export class LeverSignalComponent implements OnInit {
   @Input() lever: LeverDisplay;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  ngOnChanges() {
-    this.lever.symbol_name = 'signal_lever' + this.lever.name;
   }
 }

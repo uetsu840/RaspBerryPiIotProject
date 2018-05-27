@@ -1,17 +1,25 @@
 <svg:g>
-  <symbol id="{{lever.symbol_name}}">
+  <symbol id="{{lever.symbol_name_knob}}">
     <line x1="25" y1="0" x2="25" y2="30" stroke="yellow" stroke-width="15" />
     <circle cx="25" cy="50" r="20" stroke="yellow" stroke-width="10" fill="dimgrey" />
     <text x="12" y="58" font-size="20" fill="white">
       {{lever.name}}
     </text>
   </symbol>
+  <symbol id="{{lever.symbol_name_stat}}">
+    <svg:circle cx="10" cy="10" r="7" fill="green" />
+    <svg:circle cx="40" cy="10" r="7" fill="darkgray" />
+  </symbol>
+
   <svg:use 
     attr.x="{{lever.display_pos.x}}"
     attr.y="{{lever.display_pos.y}}"
-    attr.xlink:href="#{{lever.symbol_name}}" 
+    attr.xlink:href="#{{lever.symbol_name_knob}}" 
     attr.transform="rotate({{lever.rotate}} {{lever.display_pos.x}} {{lever.display_pos.y}})"></svg:use>
   <!-- status lamp -->
-  <svg:circle cx="10" cy="10" r="7" fill="green" />
-  <svg:circle cx="40" cy="10" r="7" fill="darkgray" />
+  <svg:use
+    attr.x="{{lever.stat_pos.x}}"
+    attr.y="{{lever.stat_pos.y}}"
+    attr.xlink:href="#{{lever.symbol_name_stat}}">
+  </svg:use>
 </svg:g>

@@ -63,7 +63,6 @@ export class SignalDisplay {
             this.route[i] = new SignalDisplayRoute;
             this.route[i].name = name[i];
             const offset = this.getTextOffset(rotate, name.length, i);
-            console.log(offset);
             this.route[i].text_pos = new Position;
             this.route[i].text_pos.x = display_pos.x + offset.x;
             this.route[i].text_pos.y = display_pos.y + offset.y;

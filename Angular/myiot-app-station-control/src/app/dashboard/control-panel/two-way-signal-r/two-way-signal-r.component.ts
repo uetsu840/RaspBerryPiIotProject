@@ -14,6 +14,6 @@ export class TwoWaySignalRComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.signal.symbol_name = 'signal' + this.signal.name1 + this.signal.name2; 
+    console.log(this.signal);
   }
 }

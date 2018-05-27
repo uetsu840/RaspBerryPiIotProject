@@ -1,0 +1,20 @@
+<svg:g>
+  <symbol id={{lever.symbol_name}}>
+    <line x1="25" y1="0" x2="25" y2="30" stroke="red" stroke-width="15" />
+    <circle cx="25" cy="50" r="25" fill="red" />
+  </symbol>
+
+  <svg:use 
+    attr.x="{{lever.display_pos.x}}"
+    attr.y="{{lever.display_pos.y}}"
+    attr.xlink:href="#{{lever.symbol_name}}" 
+    attr.transform="rotate({{lever.rotate}} {{lever.display_pos.x}} {{lever.display_pos.y}})"></svg:use> 
+  <text 
+    attr.x="{{lever.text_pos.x}}" 
+    attr.y="{{lever.text_pos.y}}" 
+    fill="white" 
+    font-size="30">
+    {{lever.name}}
+  </text>
+</svg:g>
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignalDisplay } from './signal-display';
+import { LeverDisplay } from './lever-display';
 
 @Component({
   selector: 'app-control-panel',
@@ -61,6 +62,35 @@ export class ControlPanelComponent implements OnInit {
     name2: '',
     text1_pos: { x: 700, y: 520 },
     text2_pos: { x: 0, y: 0 }
+  };
+
+  lever_signal_1: LeverDisplay = {
+    symbol_name: '',
+    display_pos: { x: 100, y: 575 },
+    text_pos: { x: 115, y: 680 },
+    rotate: 0,
+    name: '1'
+  };
+  lever_signal_2: LeverDisplay = {
+    symbol_name: '',
+    display_pos: { x: 200, y: 575 },
+    text_pos: { x: 215, y: 680 },
+    rotate: 0,
+    name: '2'
+  };
+  lever_signal_3: LeverDisplay = {
+    symbol_name: '',
+    display_pos: { x: 300, y: 575 },
+    text_pos: { x: 315, y: 680 },
+    rotate: 0,
+    name: '3'
+  };
+  lever_signal_4: LeverDisplay = {
+    symbol_name: '',
+    display_pos: { x: 400, y: 575 },
+    text_pos: { x: 415, y: 680 },
+    rotate: 0,
+    name: '4'
   };
 
   constructor() { }

@@ -15,6 +15,8 @@ import { SwitchDetailComponent } from './switch-detail/switch-detail.component';
 import { ControlPanelComponent } from './dashboard/control-panel/control-panel.component';
 import { SingleSignalComponent } from './dashboard/control-panel/single-signal/single-signal.component';
 import { TwoWaySignalRComponent } from './dashboard/control-panel/two-way-signal-r/two-way-signal-r.component';
+import { LeverSignalComponent } from './dashboard/control-panel/lever-signal/lever-signal.component';
+import { LeverSwitchComponent } from './dashboard/control-panel/lever-switch/lever-switch.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { TwoWaySignalRComponent } from './dashboard/control-panel/two-way-signal
     SwitchDetailComponent,
     ControlPanelComponent,
     SingleSignalComponent,
-    TwoWaySignalRComponent
+    TwoWaySignalRComponent,
+    LeverSignalComponent,
+    LeverSwitchComponent
   ],
   imports: [
     BrowserModule,

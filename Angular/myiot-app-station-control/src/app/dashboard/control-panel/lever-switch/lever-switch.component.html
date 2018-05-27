@@ -6,16 +6,29 @@
       {{lever.name}}
     </text>
   </symbol>
+  <symbol id="{{lever.symbol_name_click}}">
+    <rect x= "0" y="0" width="25" height="30" fill="darkgreen" (click)="onClickLeft()"/>
+    <rect x="25" y="0" width="25" height="30" fill="darkgreen" (click)="onClickRight()"/>
+  </symbol>
   <symbol id="{{lever.symbol_name_stat}}">
     <svg:circle cx="10" cy="10" r="7" fill="green" />
     <svg:circle cx="40" cy="10" r="7" fill="darkgray" />
   </symbol>
 
+  <!-- click area -->
+  <svg:use
+    attr.x="{{lever.click_pos.x}}"
+    attr.y="{{lever.click_pos.y}}"
+    attr.xlink:href="#{{lever.symbol_name_click}}">
+  </svg:use>
   <svg:use 
     attr.x="{{lever.display_pos.x}}"
     attr.y="{{lever.display_pos.y}}"
     attr.xlink:href="#{{lever.symbol_name_knob}}" 
-    attr.transform="rotate({{lever.rotate}} {{lever.display_pos.x}} {{lever.display_pos.y}})"></svg:use>
+    attr.transform="rotate({{lever.rotate}} 
+                    {{lever.rotate_center_pos.x}}
+                    {{lever.rotate_center_pos.y}})">
+  </svg:use>
   <!-- status lamp -->
   <svg:use
     attr.x="{{lever.stat_pos.x}}"

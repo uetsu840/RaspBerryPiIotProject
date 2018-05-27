@@ -13,4 +13,12 @@ export class LeverSwitchComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onClickLeft() {
+    this.lever.toLeft();
+  }
+
+  onClickRight() {
+    this.lever.toRight();
+  }
 }

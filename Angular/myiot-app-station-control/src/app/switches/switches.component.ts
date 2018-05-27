@@ -29,7 +29,6 @@ export class SwitchesComponent implements OnInit, OnDestroy {
   getSwitches(): void {
     this.switchService.getSwitches()
       .subscribe(switches => {
-        console.log(switches);
         this.switches = switches;
         for (const m_switch of switches) {
           m_switch.display_style_normal = 'light_off';

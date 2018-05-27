@@ -26,12 +26,9 @@ export class SignalDetailComponent implements OnInit {
   getSignal(): void {
     const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log('------------');
-    console.log(id);
     this.signalService.getSignal(id)
       .subscribe(signal => {
         this.signal = signal;
-        console.log('>>>>>>>>>>');
       } );
   }
 

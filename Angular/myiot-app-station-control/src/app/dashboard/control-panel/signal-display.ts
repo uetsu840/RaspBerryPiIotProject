@@ -12,6 +12,45 @@ export class SignalDisplay {
     signal_pos: Position;
     rotate: number;
 
+    private getTextOffset(
+        rotate: number,
+        signal_num: number,
+        i: number ): Position {
+        const offset = new Position;
+        if (1 === signal_num) {
+            if (0 === rotate) {
+                /* 右向き(回転なし) */
+                offset.x = 10;
+                offset.y = 15;
+            } else {
+                /* 左向き(180度回転) */
+                offset.x = -45;
+                offset.y = -35;
+            }
+        } else if (2 === signal_num) {
+            if (0 === rotate) {
+                /* 右向き(回転なし) */
+                if (i === 0) {
+                    offset.x = 25;
+                    offset.y = 15;
+                } else if (i === 1) {
+                    offset.x = 10;
+                    offset.y = 105;
+                }
+            } else {
+                /* 左向き(180度回転) */
+                if (i === 0) {
+                    offset.x = -50;
+                    offset.y = -80;
+                } else if (i === 1) {
+                    offset.x = -60;
+                    offset.y = 5;
+                }
+            }
+        }
+        return offset;
+    }
+
     constructor(
         display_pos: Position,
         rotate: number,
@@ -22,19 +61,12 @@ export class SignalDisplay {
         this.route = new Array(name.length);
         for (let i = 0; i < name.length; i++) {
             this.route[i] = new SignalDisplayRoute;
-            let offset_x;
-            let offset_y;
             this.route[i].name = name[i];
-            if (i === 0) {
-                offset_x = 105;
-                offset_y = 10;
-            } else if (i === 1) {
-                offset_x = 105;
-                offset_y = 10;
-            }
+            const offset = this.getTextOffset(rotate, name.length, i);
+            console.log(offset);
             this.route[i].text_pos = new Position;
-            this.route[i].text_pos.x = display_pos.x + offset_x;
-            this.route[i].text_pos.y = display_pos.y + offset_y;
+            this.route[i].text_pos.x = display_pos.x + offset.x;
+            this.route[i].text_pos.y = display_pos.y + offset.y;
             this.symbol_name += name[i];
         }
 

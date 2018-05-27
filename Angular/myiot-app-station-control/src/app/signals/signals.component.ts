@@ -28,7 +28,6 @@ export class SignalsComponent implements OnInit, OnDestroy {
   getSignals(): void {
     this.signalService.getSignals()
       .subscribe(signals => {
-        console.log(signals);
         this.signals = signals;
         for (const signal of signals) {
           signal.display_style_red    = 'status_off';

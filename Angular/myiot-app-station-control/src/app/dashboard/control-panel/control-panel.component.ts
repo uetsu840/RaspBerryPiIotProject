@@ -19,6 +19,8 @@ export class ControlPanelComponent implements OnInit {
   lever_signal_2 = new LeverDisplay({ x: 200, y: 575 }, '2');
   lever_signal_3 = new LeverDisplay({ x: 300, y: 575 }, '3');
   lever_signal_4 = new LeverDisplay({ x: 400, y: 575 }, '4');
+  lever_switch_1 = new LeverDisplay({ x: 500, y: 575 }, '11');
+  lever_switch_2 = new LeverDisplay({ x: 600, y: 575 }, '21');
 
   constructor() { }
 

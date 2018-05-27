@@ -1,17 +1,5 @@
 <svg width="1000" height="700" viewBox="0, 0, 1000, 700" style="background: rgb(11, 65, 42)">
   <defs>
-    <symbol id="lever_switch">
-      <line x1="25" y1="0" x2="25" y2="30" stroke="yellow" stroke-width="15" />
-      <circle cx="25" cy="50" r="25" fill="yellow" />
-    </symbol>
-    <symbol id="status_switch_normal">
-      <circle cx="10" cy="10" r="7" fill="green" />
-      <circle cx="40" cy="10" r="7" fill="darkgray" />
-    </symbol>
-    <symbol id="status_switch_reverse">
-      <circle cx="10" cy="10" r="7" fill="darkgray" />
-      <circle cx="40" cy="10" r="7" fill="red" />
-    </symbol>
     <symbol id="rail_switch">
       <line x1="5" y1="50" x2="95" y2="50" stroke="white" stroke-width="15" />
       <line x1="40" y1="50" x2="80" y2="100" stroke="white" stroke-width="15" />
@@ -39,12 +27,7 @@
   <svg:g app-lever-signal [lever]="lever_signal_2"></svg:g>
   <svg:g app-lever-signal [lever]="lever_signal_3"></svg:g>
   <svg:g app-lever-signal [lever]="lever_signal_4"></svg:g>
-
-  <use x="100" y="50" xlink:href="#status_switch_normal"></use>
-  <use x="200" y="50" xlink:href="#status_switch_normal"></use>
-  <use x="100" y="75" xlink:href="#lever_switch"></use>
-  <use x="200" y="75" xlink:href="#lever_switch"></use>
-
-
+  <svg:g app-lever-switch [lever]="lever_switch_1"></svg:g>
+  <svg:g app-lever-switch [lever]="lever_switch_2"></svg:g>
 
 </svg>

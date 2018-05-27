@@ -16,18 +16,18 @@
   <line x1="205" y1="350" x2="695" y2="350" stroke="white" stroke-width="15" />
   <line x1="205" y1="400" x2="695" y2="400" stroke="white" stroke-width="15" />
 
-  <svg:g app-two-way-signal-r [signal]="signal_3L4L" />
-  <svg:g app-two-way-signal-r [signal]="signal_1R2R" />
-  <svg:g app-single-signal [signal]="signal_1L" />
-  <svg:g app-single-signal [signal]="signal_2L" />
-  <svg:g app-single-signal [signal]="signal_3R" />
-  <svg:g app-single-signal [signal]="signal_4R" />
+  <svg:g app-two-way-signal-r [signal]="signals['3L4L']" />
+  <svg:g app-two-way-signal-r [signal]="signals['1R2R']" />
+  <svg:g app-single-signal [signal]="signals['1L']" />
+  <svg:g app-single-signal [signal]="signals['2L']" />
+  <svg:g app-single-signal [signal]="signals['3R']" />
+  <svg:g app-single-signal [signal]="signals['4R']" />
 
-  <svg:g app-lever-signal [lever]="lever_signal_1"></svg:g>
-  <svg:g app-lever-signal [lever]="lever_signal_2"></svg:g>
-  <svg:g app-lever-signal [lever]="lever_signal_3"></svg:g>
-  <svg:g app-lever-signal [lever]="lever_signal_4"></svg:g>
-  <svg:g app-lever-switch [lever]="lever_switch_1"></svg:g>
-  <svg:g app-lever-switch [lever]="lever_switch_2"></svg:g>
+  <svg:g app-lever-signal [lever]="levers['1']"></svg:g>
+  <svg:g app-lever-signal [lever]="levers['2']"></svg:g>
+  <svg:g app-lever-signal [lever]="levers['3']"></svg:g>
+  <svg:g app-lever-signal [lever]="levers['4']"></svg:g>
+  <svg:g app-lever-switch [lever]="levers['11']"></svg:g>
+  <svg:g app-lever-switch [lever]="levers['21']"></svg:g>
 
 </svg>

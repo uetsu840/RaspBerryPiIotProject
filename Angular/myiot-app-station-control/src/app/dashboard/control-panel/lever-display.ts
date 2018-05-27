@@ -77,4 +77,18 @@ export class LeverDisplay {
         this.position = LeverPosition.Center;
         this.updateRotate();
     }
+
+    getStateL(): number {
+        if (this.position === LeverPosition.Left) {
+            return 1;
+        }
+        return 0;
+    }
+
+    getStateR(): number {
+        if (this.position === LeverPosition.Right) {
+            return 1;
+        }
+        return 0;
+    }
 }

@@ -29,5 +29,4 @@ export class LeverSwitchComponent implements OnInit {
   onMouseUpRight() {
     this.lever.toCenter();
   }
-
 }

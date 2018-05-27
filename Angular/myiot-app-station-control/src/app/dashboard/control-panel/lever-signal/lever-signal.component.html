@@ -3,12 +3,26 @@
     <line x1="25" y1="0" x2="25" y2="30" stroke="red" stroke-width="15" />
     <circle cx="25" cy="50" r="25" fill="red" />
   </symbol>
+  <symbol id="{{lever.symbol_name_click}}">
+    <rect x="0" y="0" width="25" height="30" fill="darkgreen" (click)="onClickLeft()" />
+    <rect x="25" y="0" width="25" height="30" fill="darkgreen" (click)="onClickRight()" />
+  </symbol>
 
+  <!-- click area -->
+  <svg:use 
+    attr.x="{{lever.click_pos.x}}"
+    attr.y="{{lever.click_pos.y}}"
+    attr.xlink:href="#{{lever.symbol_name_click}}">
+  </svg:use>
+  <!-- lever -->
   <svg:use 
     attr.x="{{lever.display_pos.x}}"
     attr.y="{{lever.display_pos.y}}"
     attr.xlink:href="#{{lever.symbol_name_knob}}" 
-    attr.transform="rotate({{lever.rotate}} {{lever.display_pos.x}} {{lever.display_pos.y}})"></svg:use> 
+     attr.transform="rotate({{lever.rotate}} 
+      {{lever.rotate_center_pos.x}} 
+      {{lever.rotate_center_pos.y}})">
+  </svg:use>
   <text 
     attr.x="{{lever.text_pos.x}}" 
     attr.y="{{lever.text_pos.y}}" 

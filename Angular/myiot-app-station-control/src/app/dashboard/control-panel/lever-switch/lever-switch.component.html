@@ -7,8 +7,12 @@
     </text>
   </symbol>
   <symbol id="{{lever.symbol_name_click}}">
-    <rect x= "0" y="0" width="25" height="30" fill="darkgreen" (click)="onClickLeft()"/>
-    <rect x="25" y="0" width="25" height="30" fill="darkgreen" (click)="onClickRight()"/>
+    <rect x= "0" y="0" width="25" height="30" fill="darkgreen" 
+      (mousedown)="onMouseDownLeft()"
+      (mouseup)="onMouseUpLeft()"/>
+    <rect x="25" y="0" width="25" height="30" fill="darkgreen"
+      (mousedown)="onMouseDownRight()"
+      (mouseup)="onMouseUpRight()"/>
   </symbol>
   <symbol id="{{lever.symbol_name_stat}}">
     <svg:circle cx="10" cy="10" r="7" fill="green" />
@@ -21,6 +25,7 @@
     attr.y="{{lever.click_pos.y}}"
     attr.xlink:href="#{{lever.symbol_name_click}}">
   </svg:use>
+  <!-- lever -->
   <svg:use 
     attr.x="{{lever.display_pos.x}}"
     attr.y="{{lever.display_pos.y}}"

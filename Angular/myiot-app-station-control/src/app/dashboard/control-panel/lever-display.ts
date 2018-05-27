@@ -72,4 +72,9 @@ export class LeverDisplay {
         }
         this.updateRotate();
     }
+
+    toCenter() {
+        this.position = LeverPosition.Center;
+        this.updateRotate();
+    }
 }

@@ -9,10 +9,12 @@
   <symbol id="{{lever.symbol_name_click}}">
     <rect x= "0" y="0" width="25" height="30" fill="darkgreen" 
       (mousedown)="onMouseDownLeft()"
-      (mouseup)="onMouseUpLeft()"/>
+      (mouseup)="onMouseUpLeft()"
+      (mouseleave)="onMouseUpLeft()"/>
     <rect x="25" y="0" width="25" height="30" fill="darkgreen"
       (mousedown)="onMouseDownRight()"
-      (mouseup)="onMouseUpRight()"/>
+      (mouseup)="onMouseUpRight()"
+      (mouseleave)="onMouseUpRight()"/>
   </symbol>
   <symbol id="{{lever.symbol_name_stat}}">
     <svg:circle cx="10" cy="10" r="7" fill="green" />

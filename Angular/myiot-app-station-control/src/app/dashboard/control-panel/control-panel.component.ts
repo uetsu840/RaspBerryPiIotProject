@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SignalDisplay } from './signal-display';
 import { LeverDisplay } from './lever-display';
-import { ControlPanelOutput } from '../control-panel-output';
+import { ControlPanelOutput, ControlPanelLeverState } from '../control-panel-output';
 
 @Component({
   selector: 'app-control-panel',
@@ -32,20 +32,39 @@ export class ControlPanelComponent implements OnInit {
     this.levers['21'] = new LeverDisplay({ x: 600, y: 575 }, '21');
   }
 
+  private addOutput(
+    output: ControlPanelLeverState[],
+    idx: number,
+    output_name: string,
+    lever_name: string,
+    isRight: boolean) {
+
+    let pos: number;
+    if (isRight) {
+      pos = this.levers[lever_name].getStateR();
+    } else {
+      pos = this.levers[lever_name].getStateL();
+    }
+    output[idx] = { name: output_name, lever_pos: pos };
+  }
+
   onEvent() {
-    const  control_panel_output: ControlPanelOutput = {SignalControl: { }, SwitchControl: { }};
-    control_panel_output.SignalControl['1L'] = this.levers['1'].getStateL();
-    control_panel_output.SignalControl['2L'] = this.levers['2'].getStateL();
-    control_panel_output.SignalControl['3L'] = this.levers['3'].getStateL();
-    control_panel_output.SignalControl['4L'] = this.levers['4'].getStateL();
-    control_panel_output.SignalControl['1R'] = this.levers['1'].getStateR();
-    control_panel_output.SignalControl['2R'] = this.levers['2'].getStateR();
-    control_panel_output.SignalControl['3R'] = this.levers['3'].getStateR();
-    control_panel_output.SignalControl['4R'] = this.levers['4'].getStateR();
-    control_panel_output.SwitchControl['11Nml'] = this.levers['11'].getStateL();
-    control_panel_output.SwitchControl['21Nml'] = this.levers['21'].getStateL();
-    control_panel_output.SwitchControl['11Rev'] = this.levers['11'].getStateR();
-    control_panel_output.SwitchControl['21Rev'] = this.levers['21'].getStateR();
+    const control_panel_output: ControlPanelOutput
+      = { SignalControl: new Array, SwitchControl: new Array};
+    this.addOutput(control_panel_output.SignalControl, 0, '1L', '1', false);
+    this.addOutput(control_panel_output.SignalControl, 1, '2L', '2', false);
+    this.addOutput(control_panel_output.SignalControl, 2, '3L', '3', false);
+    this.addOutput(control_panel_output.SignalControl, 3, '4L', '4', false);
+    this.addOutput(control_panel_output.SignalControl, 4, '1R', '1', true);
+    this.addOutput(control_panel_output.SignalControl, 5, '2R', '2', true);
+    this.addOutput(control_panel_output.SignalControl, 6, '3R', '3', true);
+    this.addOutput(control_panel_output.SignalControl, 7, '4R', '4', true);
+
+    this.addOutput(control_panel_output.SwitchControl, 0, '11Nml', '11', false);
+    this.addOutput(control_panel_output.SwitchControl, 1, '21Nml', '21', false);
+    this.addOutput(control_panel_output.SwitchControl, 2, '11Rev', '11', true);
+    this.addOutput(control_panel_output.SwitchControl, 3, '21Rev', '21', true);
+
     this.event.emit(control_panel_output);
   }
 }

@@ -32,11 +32,6 @@ export class SignalDetailComponent implements OnInit {
       } );
   }
 
-  save(): void {
-    this.signalService.updateSignal(this.signal)
-      .subscribe(() => this.goBack());
-  }
-
   goBack(): void {
     this.location.back();
   }

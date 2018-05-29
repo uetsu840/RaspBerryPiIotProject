@@ -46,13 +46,4 @@ export class SwitchesComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.switchService.addSwitch({ name } as Switch)
-      .subscribe(one_switch => {
-        this.switches.push(one_switch);
-      });
-  }
 }

@@ -48,6 +48,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   onControlUpdate(control: ControlPanelOutput): void {
-    console.log(control);
+    this.signalService.updateSignal(control.SignalControl)
+      .subscribe();
+    this.switchService.updateSwitch(control.SwitchControl)
+      .subscribe();
   }
+
 }

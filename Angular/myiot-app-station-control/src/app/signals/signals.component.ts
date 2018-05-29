@@ -49,13 +49,4 @@ export class SignalsComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.signalService.addSignal({ name } as Signal)
-      .subscribe(signal => {
-        this.signals.push(signal);
-      });
-  }
 }

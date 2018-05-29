@@ -1,4 +1,8 @@
+export class ControlPanelLeverState {
+    name: string;
+    lever_pos: number;
+}
 export class ControlPanelOutput {
-    SignalControl: { [index: string]: number; };
-    SwitchControl: { [idnex: string]: number; };
+    SignalControl: ControlPanelLeverState[];
+    SwitchControl: ControlPanelLeverState[];
 }

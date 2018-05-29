@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Signal } from './signal';
+import { ControlPanelLeverState } from './dashboard/control-panel-output';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -63,18 +64,17 @@ export class SignalService {
   }
 
   /** PUT: update the signal on the server */
-  updateSignal(signal: Signal): Observable<any> {
-    return this.http.put(this.SignalApiUrl, signal, httpOptions).pipe(
-      tap(_ => this.log(`updated signal id=${signal.id}`)),
+  updateSignal(signal: ControlPanelLeverState[]): Observable<any> {
+    const request = {
+      'state': {
+        'desired': {
+          'signal': signal
+        }
+      }
+    };
+    return this.http.put(this.SignalApiUrl, JSON.stringify(request), httpOptions).pipe(
+      tap(_ => this.log(`updated signal`)),
       catchError(this.handleError<any>('updateSignal'))
-    );
-  }
-
-  /** POST: add a new signal to the server */
-  addSignal(signal: Signal): Observable<Signal> {
-    return this.http.post<Signal>(this.SignalApiUrl, signal, httpOptions).pipe(
-      tap((signals: Signal) => this.log(`added signal w/ id=${signal.id}`)),
-      catchError(this.handleError<Signal>('addSignal'))
     );
   }
 }

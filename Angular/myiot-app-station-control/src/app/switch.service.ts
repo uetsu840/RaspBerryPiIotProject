@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Switch } from './switch';
+import { ControlPanelLeverState } from './dashboard/control-panel-output';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -63,18 +65,10 @@ export class SwitchService {
   }
 
   /** PUT: update the switch on the server */
-  updateSwitch(my_switch: Switch): Observable<any> {
+  updateSwitch(my_switch: ControlPanelLeverState[]): Observable<any> {
     return this.http.put(this.SignalApiUrl, my_switch, httpOptions).pipe(
-      tap(_ => this.log(`updated signal id=${my_switch.id}`)),
-      catchError(this.handleError<any>('updateSignal'))
-    );
-  }
-
-  /** POST: add a new switch to the server */
-  addSwitch(my_switch: Switch): Observable<Switch> {
-    return this.http.post<Switch>(this.SignalApiUrl, my_switch, httpOptions).pipe(
-      tap((my_switches: Switch) => this.log(`added signal w/ id=${my_switch.id}`)),
-      catchError(this.handleError<Switch>('addSignal'))
+      tap(_ => this.log(`updated switch`)),
+      catchError(this.handleError<any>('updateSwitch'))
     );
   }
 }

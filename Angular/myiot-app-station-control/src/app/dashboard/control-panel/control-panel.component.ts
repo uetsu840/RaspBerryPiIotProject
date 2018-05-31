@@ -51,18 +51,18 @@ export class ControlPanelComponent implements OnInit {
   onEvent() {
     const control_panel_output: ControlPanelOutput
       = { SignalControl: new Array, SwitchControl: new Array};
-    this.addOutput(control_panel_output.SignalControl, 0, '1L', '1', false);
-    this.addOutput(control_panel_output.SignalControl, 1, '2L', '2', false);
-    this.addOutput(control_panel_output.SignalControl, 2, '3L', '3', false);
-    this.addOutput(control_panel_output.SignalControl, 3, '4L', '4', false);
     this.addOutput(control_panel_output.SignalControl, 4, '1R', '1', true);
     this.addOutput(control_panel_output.SignalControl, 5, '2R', '2', true);
     this.addOutput(control_panel_output.SignalControl, 6, '3R', '3', true);
     this.addOutput(control_panel_output.SignalControl, 7, '4R', '4', true);
+    this.addOutput(control_panel_output.SignalControl, 0, '1L', '1', false);
+    this.addOutput(control_panel_output.SignalControl, 1, '2L', '2', false);
+    this.addOutput(control_panel_output.SignalControl, 2, '3L', '3', false);
+    this.addOutput(control_panel_output.SignalControl, 3, '4L', '4', false);
 
     this.addOutput(control_panel_output.SwitchControl, 0, '11Nml', '11', false);
-    this.addOutput(control_panel_output.SwitchControl, 1, '21Nml', '21', false);
-    this.addOutput(control_panel_output.SwitchControl, 2, '11Rev', '11', true);
+    this.addOutput(control_panel_output.SwitchControl, 1, '11Rev', '11', true);
+    this.addOutput(control_panel_output.SwitchControl, 2, '21Nml', '21', false);
     this.addOutput(control_panel_output.SwitchControl, 3, '21Rev', '21', true);
 
     this.event.emit(control_panel_output);

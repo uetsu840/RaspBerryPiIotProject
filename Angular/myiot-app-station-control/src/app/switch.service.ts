@@ -22,10 +22,10 @@ export class SwitchService {
     private messageService: MessageService) { }
 
   /** GET heroes from the server */
-  getSwitches(): Observable<Switch[]> {
-    return this.http.get<Switch[]>(this.SignalApiUrl)
+  getSwitches(): Observable<any> {
+    return this.http.get<{ [index: string]: Switch; }>(this.SignalApiUrl)
       .pipe(
-      tap(signals => this.log(`fetched heroes`)),
+      tap(signals => this.log(`fetched signals`)),
       catchError(this.handleError('getSignals', []))
       );
   }
@@ -66,7 +66,14 @@ export class SwitchService {
 
   /** PUT: update the switch on the server */
   updateSwitch(my_switch: ControlPanelLeverState[]): Observable<any> {
-    return this.http.put(this.SignalApiUrl, my_switch, httpOptions).pipe(
+    const request = {
+      'state': {
+        'desired': {
+          'switch_ctrl': my_switch
+        }
+      }
+    };
+    return this.http.put(this.SignalApiUrl, JSON.stringify(request), httpOptions).pipe(
       tap(_ => this.log(`updated switch`)),
       catchError(this.handleError<any>('updateSwitch'))
     );

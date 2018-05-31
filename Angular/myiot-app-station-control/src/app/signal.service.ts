@@ -68,7 +68,7 @@ export class SignalService {
     const request = {
       'state': {
         'desired': {
-          'signal': signal
+          'signal_ctrl': signal
         }
       }
     };

@@ -6,3 +6,5 @@ export class Switch {
     display_style_normal:  string;
     display_style_reverse: string;
 }
+
+

@@ -15,6 +15,8 @@ export class LeverDisplay {
     private click_pos: Position;
     private position: LeverPosition;
     private rotate_center_pos: Position;
+    private normal_lamp_color: string;
+    private reverse_lamp_color: string;
     display_pos: Position;
     rotate: number;
     name: string;
@@ -90,5 +92,16 @@ export class LeverDisplay {
             return 1;
         }
         return 0;
+    }
+
+    updatePosition(position) {
+        if (position === 0) {
+            this.normal_lamp_color  = 'lightgreen';
+            this.reverse_lamp_color = 'dimgrey';
+        }
+        if (position === 1) {
+            this.normal_lamp_color = 'dimgrey';
+            this.reverse_lamp_color = 'red';
+        }
     }
 }

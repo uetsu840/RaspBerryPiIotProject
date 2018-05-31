@@ -1,7 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, OnChanges, SimpleChanges,
+  Input, Output, EventEmitter
+} from '@angular/core';
 import { SignalDisplay } from './signal-display';
 import { LeverDisplay } from './lever-display';
 import { ControlPanelOutput, ControlPanelLeverState } from '../control-panel-output';
+import { Switch } from 'src/app/switch';
+import { Signal } from 'src/app/signal';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-control-panel',
@@ -9,7 +15,9 @@ import { ControlPanelOutput, ControlPanelLeverState } from '../control-panel-out
   styleUrls: ['./control-panel.component.css']
 })
 
-export class ControlPanelComponent implements OnInit {
+export class ControlPanelComponent implements OnInit, OnChanges {
+  @Input() state_switches: Switch[];
+  @Input() state_signals: Signal[];
   @Output() event = new EventEmitter<ControlPanelOutput>();
 
   signals: { [index: string]: SignalDisplay; } = {};
@@ -32,6 +40,24 @@ export class ControlPanelComponent implements OnInit {
     this.levers['21'] = new LeverDisplay({ x: 600, y: 575 }, '21');
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.state_switches) {
+      this.updateSwitchStateByName(this.state_switches, '11');
+      this.updateSwitchStateByName(this.state_switches, '21');
+    }
+  }
+
+  private updateSwitchStateByName(
+    state_switches: Switch[],
+    name: string) {
+    for (let i = 0; i < state_switches.length; i++) {
+      if (state_switches[i].name === name) {
+        this.levers[name].updatePosition(state_switches[i].position);
+        break;
+      }
+    }
+  }
+
   private addOutput(
     output: ControlPanelLeverState[],
     idx: number,
@@ -47,6 +73,7 @@ export class ControlPanelComponent implements OnInit {
     }
     output[idx] = { name: output_name, lever_pos: pos };
   }
+
 
   onEvent() {
     const control_panel_output: ControlPanelOutput

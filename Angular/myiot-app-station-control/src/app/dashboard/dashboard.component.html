@@ -1,5 +1,8 @@
 <div class="status">
-  <app-control-panel (event)=onControlUpdate($event)></app-control-panel>
+  <app-control-panel 
+    [state_signals]="signals" 
+    [state_switches]="switches"
+    (event)=onControlUpdate($event)></app-control-panel>
   <h3>信号機</h3>
   <div class="grid grid-pad">
     <a *ngFor="let signal of signals" class="col-1-4" 

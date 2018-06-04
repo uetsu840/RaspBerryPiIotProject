@@ -4,6 +4,7 @@ export class SignalDisplayRoute {
     name: string;
     text_pos: Position;
     id: number;
+    display_color: string;
 }
 
 export class SignalDisplay {
@@ -40,11 +41,11 @@ export class SignalDisplay {
             } else {
                 /* 左向き(180度回転) */
                 if (i === 0) {
-                    offset.x = -50;
-                    offset.y = -80;
-                } else if (i === 1) {
                     offset.x = -60;
                     offset.y = 5;
+                } else if (i === 1) {
+                    offset.x = -50;
+                    offset.y = -80;
                 }
             }
         }
@@ -68,6 +69,17 @@ export class SignalDisplay {
             this.route[i].text_pos.y = display_pos.y + offset.y;
             this.symbol_name += name[i];
         }
+    }
 
+    updateRouteState(name: string, position: number) {
+        for (let i = 0; i < this.route.length; i++) {
+            if (this.route[i].name === name) {
+                if (position === 1) {
+                    this.route[i].display_color = 'lightgreen';
+                } else {
+                    this.route[i].display_color = 'dimgrey';
+                }
+            }
+        }
     }
 }

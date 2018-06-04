@@ -26,16 +26,16 @@ export class ControlPanelComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-    this.signals['3L4L'] = new SignalDisplay({ x: 900, y: 520 }, 180, ['3L', '4L']);
+    this.signals['3L4L'] = new SignalDisplay({ x: 900, y: 520 }, 180, ['4L', '3L']);
     this.signals['1L']   = new SignalDisplay({ x: 250, y: 320 }, 180, ['1L']);
     this.signals['2L']   = new SignalDisplay({ x: 250, y: 490 }, 180, ['2L']);
     this.signals['1R2R'] = new SignalDisplay({ x: 10, y: 220 }, 0, ['1R', '2R']);
     this.signals['3R']   = new SignalDisplay({ x: 650, y: 270 }, 0, ['3R']);
     this.signals['4R']   = new SignalDisplay({ x: 650, y: 440 }, 0, ['4R']);
-    this.levers['1'] = new LeverDisplay({ x: 100, y: 575 }, '1');
-    this.levers['2'] = new LeverDisplay({ x: 200, y: 575 }, '2');
-    this.levers['3'] = new LeverDisplay({ x: 300, y: 575 }, '3');
-    this.levers['4'] = new LeverDisplay({ x: 400, y: 575 }, '4');
+    this.levers['1'] = new LeverDisplay({ x: 300, y: 300 }, '1');
+    this.levers['2'] = new LeverDisplay({ x: 250, y: 370 }, '2');
+    this.levers['3'] = new LeverDisplay({ x: 600, y: 300 }, '3');
+    this.levers['4'] = new LeverDisplay({ x: 550, y: 370 }, '4');
     this.levers['11'] = new LeverDisplay({ x: 500, y: 575 }, '11');
     this.levers['21'] = new LeverDisplay({ x: 600, y: 575 }, '21');
   }
@@ -44,6 +44,16 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     if (changes.state_switches) {
       this.updateSwitchStateByName(this.state_switches, '11');
       this.updateSwitchStateByName(this.state_switches, '21');
+    }
+    if (changes.state_signals) {
+      this.updateSignalStateByName(this.state_signals, this.signals['1L'], '1L');
+      this.updateSignalStateByName(this.state_signals, this.signals['2L'], '2L');
+      this.updateSignalStateByName(this.state_signals, this.signals['3L4L'], '3L');
+      this.updateSignalStateByName(this.state_signals, this.signals['3L4L'], '4L');
+      this.updateSignalStateByName(this.state_signals, this.signals['1R2R'], '1R');
+      this.updateSignalStateByName(this.state_signals, this.signals['1R2R'], '2R');
+      this.updateSignalStateByName(this.state_signals, this.signals['3R'], '3R');
+      this.updateSignalStateByName(this.state_signals, this.signals['4R'], '4R');
     }
   }
 
@@ -54,6 +64,17 @@ export class ControlPanelComponent implements OnInit, OnChanges {
       if (state_switches[i].name === name) {
         this.levers[name].updatePosition(state_switches[i].position);
         break;
+      }
+    }
+  }
+
+  private updateSignalStateByName(
+    state_signals: Signal[],
+    display_signal: SignalDisplay,
+    name: string) {
+    for (let i = 0; i < state_signals.length; i++) {
+      if (state_signals[i].name === name) {
+        display_signal.updateRouteState(name, state_signals[i].position);
       }
     }
   }

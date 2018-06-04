@@ -1,7 +1,10 @@
 <svg:g>
   <symbol id={{lever.symbol_name_knob}}>
     <line x1="25" y1="0" x2="25" y2="30" stroke="red" stroke-width="15" />
-    <circle cx="25" cy="50" r="25" fill="red" />
+    <circle cx="25" cy="50" r="20" stroke="red" stroke-width="10" fill="dimgrey" />
+    <text x="17" y="58" font-size="20" fill="white">
+      {{lever.name}}
+    </text>
   </symbol>
   <symbol id="{{lever.symbol_name_click}}">
     <rect x="0" y="0" width="25" height="30" fill="darkgreen" (click)="onClickLeft()" />
@@ -23,12 +26,5 @@
       {{lever.rotate_center_pos.x}} 
       {{lever.rotate_center_pos.y}})">
   </svg:use>
-  <text 
-    attr.x="{{lever.text_pos.x}}" 
-    attr.y="{{lever.text_pos.y}}" 
-    fill="white" 
-    font-size="30">
-    {{lever.name}}
-  </text>
 </svg:g>
 

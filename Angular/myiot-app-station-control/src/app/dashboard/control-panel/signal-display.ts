@@ -32,20 +32,24 @@ export class SignalDisplay {
             if (0 === rotate) {
                 /* 右向き(回転なし) */
                 if (i === 0) {
+                    /* 主本線 */
                     offset.x = 25;
                     offset.y = 15;
                 } else if (i === 1) {
+                    /* 副本線 */
                     offset.x = 10;
                     offset.y = 105;
                 }
             } else {
                 /* 左向き(180度回転) */
                 if (i === 0) {
-                    offset.x = -60;
-                    offset.y = 5;
-                } else if (i === 1) {
+                    /* 主本線 */
                     offset.x = -50;
-                    offset.y = -80;
+                    offset.y = 15;
+                } else if (i === 1) {
+                    /* 副本線 */
+                    offset.x = -60;
+                    offset.y = 105;
                 }
             }
         }

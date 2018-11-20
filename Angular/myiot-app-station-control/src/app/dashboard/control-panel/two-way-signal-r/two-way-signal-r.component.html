@@ -1,3 +1,7 @@
+<!-- 
+    場内信号機
+    サイズ 110 x 100 
+-->
 <svg:g>
   <symbol attr.id="{{signal.symbol_name}}" viewbox="0 0 110 100">
     <line x1="2" y1="10" x2="2" y2="40" stroke="white" stroke-width="4" />
@@ -12,7 +16,9 @@
   <svg:use
      attr.x="{{signal.signal_pos.x}}" attr.y="{{signal.signal_pos.y}}"
      attr.xlink:href="#{{signal.symbol_name}}"
-     attr.transform="rotate({{signal.rotate}} {{signal.signal_pos.x}} {{signal.signal_pos.y}})"></svg:use>
+     attr.transform="rotate({{signal.rotate}} 
+                            {{signal.signal_pos.x}} 
+                            {{signal.signal_pos.y + 50}})"></svg:use>
   <svg:text 
     attr.x="{{signal.route[0].text_pos.x}}"
     attr.y="{{signal.route[0].text_pos.y}}" fill="white" font-size="30">

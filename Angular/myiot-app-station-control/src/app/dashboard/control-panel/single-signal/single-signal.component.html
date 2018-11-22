@@ -5,9 +5,15 @@
     <circle cx="75" cy="25" r="23" stroke="white"
       attr.fill="{{signal.route[0].display_color}}"  stroke-width="4" />
   </symbol>
-  <svg:use attr.x="{{signal.signal_pos.x}}" attr.y="{{signal.signal_pos.y}}" 
-            attr.xlink:href="#{{signal.symbol_name}}"
-            attr.transform="rotate({{signal.rotate}} {{signal.signal_pos.x}} {{signal.signal_pos.y}})"></svg:use>
+  <svg:use  
+        x="0" y="0"
+        attr.xlink:href="#{{signal.symbol_name}}"
+        attr.transform="
+            translate({{signal.signal_pos.x}}, {{signal.signal_pos.y}}),
+            rotate({{signal.rotate}} 
+                    0 
+                    {{signal.center_offset_y}})
+        "></svg:use>
   <svg:text
     attr.x="{{signal.route[0].text_pos.x}}"
     attr.y="{{signal.route[0].text_pos.y}}" fill="white" font-size="30">

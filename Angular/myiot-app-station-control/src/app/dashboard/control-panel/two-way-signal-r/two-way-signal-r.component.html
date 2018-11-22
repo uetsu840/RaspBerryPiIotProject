@@ -1,6 +1,9 @@
 <!-- 
     場内信号機
-    サイズ 110 x 100 
+    ・サイズ 110 x 100 
+    ・位置は中央の足元で指定する。
+    ・signal.scale_y で鏡像(主本線と副本線を反転する) を指定。
+    ・signal.rotate で回転角度を指定。
 -->
 <svg:g>
   <symbol attr.id="{{signal.symbol_name}}" viewbox="0 0 110 100">
@@ -14,11 +17,18 @@
       attr.fill="{{signal.route[1].display_color}}" stroke-width="4" />
   </symbol>
   <svg:use
-     attr.x="{{signal.signal_pos.x}}" attr.y="{{signal.signal_pos.y}}"
+     x="0" y="0"
      attr.xlink:href="#{{signal.symbol_name}}"
-     attr.transform="rotate({{signal.rotate}} 
-                            {{signal.signal_pos.x}} 
-                            {{signal.signal_pos.y + 50}})"></svg:use>
+     attr.transform="
+            translate({{signal.signal_pos.x}}, {{signal.signal_pos.y}}),
+            rotate({{signal.rotate}} 
+                   0 
+                   {{signal.center_offset_y}})
+            translate(0 {{signal.center_offset_y}})
+            scale(1 {{signal.scale_y}})
+            translate(0 -{{signal.center_offset_y}})
+        ">
+  </svg:use>
   <svg:text 
     attr.x="{{signal.route[0].text_pos.x}}"
     attr.y="{{signal.route[0].text_pos.y}}" fill="white" font-size="30">

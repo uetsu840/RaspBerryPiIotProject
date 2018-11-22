@@ -3,6 +3,7 @@ import {
   Input, Output, EventEmitter
 } from '@angular/core';
 import { SignalDisplay } from './signal-display';
+import { SD_MainRoute } from './signal-display';
 import { LeverDisplay } from './lever-display';
 import { ControlPanelOutput, ControlPanelLeverState } from '../control-panel-output';
 import { Switch } from 'src/app/switch';
@@ -26,12 +27,12 @@ export class ControlPanelComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-    this.signals['3L4L'] = new SignalDisplay({ x: 900, y: 420 }, 180, ['4L', '3L']);
-    this.signals['1L']   = new SignalDisplay({ x: 250, y: 320 }, 180, ['1L']);
-    this.signals['2L']   = new SignalDisplay({ x: 250, y: 490 }, 180, ['2L']);
-    this.signals['1R2R'] = new SignalDisplay({ x: 10, y: 220 }, 0, ['1R', '2R']);
-    this.signals['3R']   = new SignalDisplay({ x: 650, y: 440 }, 0, ['3R']);
-    this.signals['4R']   = new SignalDisplay({ x: 650, y: 270 }, 0, ['4R']);
+    this.signals['3L4L'] = new SignalDisplay({ x: 900, y: 420 }, 180, SD_MainRoute.Left, ['4L', '3L']);
+    this.signals['1L']   = new SignalDisplay({ x: 250, y: 270 }, 180, SD_MainRoute.Left, ['1L']);
+    this.signals['2L']   = new SignalDisplay({ x: 250, y: 440 }, 180, SD_MainRoute.Left, ['2L']);
+    this.signals['1R2R'] = new SignalDisplay({ x:  10, y: 220 }, 0, SD_MainRoute.Left, ['1R', '2R']);
+    this.signals['3R']   = new SignalDisplay({ x: 650, y: 440 }, 0, SD_MainRoute.Left, ['3R']);
+    this.signals['4R']   = new SignalDisplay({ x: 650, y: 270 }, 0, SD_MainRoute.Left, ['4R']);
     this.levers['1'] = new LeverDisplay({ x: 300, y: 300 }, '1');
     this.levers['2'] = new LeverDisplay({ x: 250, y: 370 }, '2');
     this.levers['3'] = new LeverDisplay({ x: 550, y: 370 }, '3');

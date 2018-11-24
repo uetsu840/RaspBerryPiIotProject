@@ -17,6 +17,8 @@ import { SingleSignalComponent } from './dashboard/control-panel/single-signal/s
 import { TwoWaySignalRComponent } from './dashboard/control-panel/two-way-signal-r/two-way-signal-r.component';
 import { LeverSignalComponent } from './dashboard/control-panel/lever-signal/lever-signal.component';
 import { LeverSwitchComponent } from './dashboard/control-panel/lever-switch/lever-switch.component';
+import { TrackStraightComponent } from './dashboard/control-panel/track-straight/track-straight.component';
+import { TrackSwitchComponent } from './dashboard/control-panel/track-switch/track-switch.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { LeverSwitchComponent } from './dashboard/control-panel/lever-switch/lev
     SingleSignalComponent,
     TwoWaySignalRComponent,
     LeverSignalComponent,
-    LeverSwitchComponent
+    LeverSwitchComponent,
+    TrackStraightComponent,
+    TrackSwitchComponent
   ],
   imports: [
     BrowserModule,

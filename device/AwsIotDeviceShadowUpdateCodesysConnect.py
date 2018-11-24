@@ -171,14 +171,14 @@ def updateStationStatus():
     global CodesysStationStatus
     
     CodesysStationStatus.update()
-    setSignalStatusByName(State_Values, "1R", CodesysStationStatus.signal_satus[0])
-    setSignalStatusByName(State_Values, "2R", CodesysStationStatus.signal_satus[1])
-    setSignalStatusByName(State_Values, "3R", CodesysStationStatus.signal_satus[2])
-    setSignalStatusByName(State_Values, "4R", CodesysStationStatus.signal_satus[3])
-    setSignalStatusByName(State_Values, "1L", CodesysStationStatus.signal_satus[4])
-    setSignalStatusByName(State_Values, "2L", CodesysStationStatus.signal_satus[5])
-    setSignalStatusByName(State_Values, "3L", CodesysStationStatus.signal_satus[6])
-    setSignalStatusByName(State_Values, "4L", CodesysStationStatus.signal_satus[7])
+    setSignalStatusByName(State_Values, "2R", CodesysStationStatus.signal_satus[0])
+    setSignalStatusByName(State_Values, "3R", CodesysStationStatus.signal_satus[1])
+    setSignalStatusByName(State_Values, "4R", CodesysStationStatus.signal_satus[2])
+    setSignalStatusByName(State_Values, "5R", CodesysStationStatus.signal_satus[3])
+    setSignalStatusByName(State_Values, "2L", CodesysStationStatus.signal_satus[4])
+    setSignalStatusByName(State_Values, "3L", CodesysStationStatus.signal_satus[5])
+    setSignalStatusByName(State_Values, "4L", CodesysStationStatus.signal_satus[6])
+    setSignalStatusByName(State_Values, "5L", CodesysStationStatus.signal_satus[7])
 
     setSwitchStatusByName(State_Values, "11", CodesysStationStatus.switch_status[0])
     setSwitchStatusByName(State_Values, "21", CodesysStationStatus.switch_status[1])
@@ -214,14 +214,14 @@ def updateCtrlStatus():
     switch_lever_nml = [0 for i in range(16)]
     switch_lever_rev = [0 for i in range(16)]
     
-    signal_lever_status[0] = searchSignalLeverPosByName(State_Values, "1R")
-    signal_lever_status[1] = searchSignalLeverPosByName(State_Values, "2R")
-    signal_lever_status[2] = searchSignalLeverPosByName(State_Values, "3R")
-    signal_lever_status[3] = searchSignalLeverPosByName(State_Values, "4R")
-    signal_lever_status[4] = searchSignalLeverPosByName(State_Values, "1L")
-    signal_lever_status[5] = searchSignalLeverPosByName(State_Values, "2L")
-    signal_lever_status[6] = searchSignalLeverPosByName(State_Values, "3L")
-    signal_lever_status[7] = searchSignalLeverPosByName(State_Values, "4L")
+    signal_lever_status[0] = searchSignalLeverPosByName(State_Values, "2R")
+    signal_lever_status[1] = searchSignalLeverPosByName(State_Values, "3R")
+    signal_lever_status[2] = searchSignalLeverPosByName(State_Values, "4R")
+    signal_lever_status[3] = searchSignalLeverPosByName(State_Values, "5R")
+    signal_lever_status[4] = searchSignalLeverPosByName(State_Values, "2L")
+    signal_lever_status[5] = searchSignalLeverPosByName(State_Values, "3L")
+    signal_lever_status[6] = searchSignalLeverPosByName(State_Values, "4L")
+    signal_lever_status[7] = searchSignalLeverPosByName(State_Values, "5L")
         
     switch_lever_nml[0] = searchSwitchLeverPosByName(State_Values, "11Nml")
     switch_lever_nml[1] = searchSwitchLeverPosByName(State_Values, "21Nml")

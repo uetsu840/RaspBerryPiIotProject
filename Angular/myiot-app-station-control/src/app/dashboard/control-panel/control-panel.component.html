@@ -1,32 +1,26 @@
 <svg width="1000" height="700" viewBox="0, 0, 1000, 700" style="background: rgb(11, 65, 42)">
-  <defs>
-    <symbol id="rail_switch">
-      <line x1="5" y1="50" x2="95" y2="50" stroke="white" stroke-width="15" />
-      <line x1="40" y1="50" x2="80" y2="100" stroke="white" stroke-width="15" />
-      <line x1="75" y1="100" x2="95" y2="100" stroke="white" stroke-width="15" />
-    </symbol>
-  </defs>
 
   <text x="400" y="100" fill="white" font-size="40" text-decoration="underline">佐 津</text>
 
-  <line x1="5" y1="350" x2="95" y2="350" stroke="white" stroke-width="15" />
+  <line x1="5"   y1="400" x2="95" y2="400" stroke="white" stroke-width="15" />
   <line x1="805" y1="400" x2="895" y2="400" stroke="white" stroke-width="15" />
-  <use x="100" y="300" xlink:href="#rail_switch"></use>
-  <use x="800" y="450" xlink:href="#rail_switch" transform="rotate(180 800 450)"></use>
-  <line x1="205" y1="350" x2="695" y2="350" stroke="white" stroke-width="15" />
-  <line x1="205" y1="400" x2="695" y2="400" stroke="white" stroke-width="15" />
 
-  <svg:g app-two-way-signal-r [signal]="signals['3L4L']" />
-  <svg:g app-two-way-signal-r [signal]="signals['1R2R']" />
-  <svg:g app-single-signal [signal]="signals['1L']" />
-  <svg:g app-single-signal [signal]="signals['2L']" />
+  <svg:g app-two-way-signal-r [signal]="signals['4R5R']" />
+  <svg:g app-two-way-signal-r [signal]="signals['2L3L']" />
+  <svg:g app-single-signal [signal]="signals['2R']" />
   <svg:g app-single-signal [signal]="signals['3R']" />
-  <svg:g app-single-signal [signal]="signals['4R']" />
+  <svg:g app-single-signal [signal]="signals['4L']" />
+  <svg:g app-single-signal [signal]="signals['5L']" />
 
-  <svg:g app-lever-signal [lever]="levers['1']" (event)=onEvent()></svg:g>
+  <svg:g app-track-switch [track]="tracks['21T']"></svg:g>
+  <svg:g app-track-switch [track]="tracks['31T']"></svg:g>
+  <svg:g app-track-straight [track]="tracks['2RT']"></svg:g>
+  <svg:g app-track-straight [track]="tracks['5RT']"></svg:g>
+
   <svg:g app-lever-signal [lever]="levers['2']" (event)=onEvent()></svg:g>
   <svg:g app-lever-signal [lever]="levers['3']" (event)=onEvent()></svg:g>
   <svg:g app-lever-signal [lever]="levers['4']" (event)=onEvent()></svg:g>
+  <svg:g app-lever-signal [lever]="levers['5']" (event)=onEvent()></svg:g>
   <svg:g app-lever-switch [lever]="levers['11']" (event)=onEvent()></svg:g>
   <svg:g app-lever-switch [lever]="levers['21']" (event)=onEvent()></svg:g>
 

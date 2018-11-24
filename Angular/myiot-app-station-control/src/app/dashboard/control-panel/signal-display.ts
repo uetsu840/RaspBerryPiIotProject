@@ -21,9 +21,7 @@ export class SignalDisplay {
     center_offset_y: number;
     scale_y: number;
 
-    private degToRad(
-        deg: number
-    ) {
+    private degToRad(deg: number) {
         return deg * Math.PI / 180;
     }
 
@@ -75,10 +73,10 @@ export class SignalDisplay {
     }
 
     constructor(
-        display_pos: Position,
-        rotate: number,
-        main_route: SD_MainRoute,
-        name: string[]) {
+        display_pos:    Position,
+        rotate:         number,
+        main_route:     SD_MainRoute,
+        name:           string[]) {
         this.signal_pos = display_pos;
         this.rotate = rotate;
         if (name.length === 1) {

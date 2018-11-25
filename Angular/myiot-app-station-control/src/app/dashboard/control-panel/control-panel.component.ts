@@ -31,16 +31,16 @@ export class ControlPanelComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.signals['2L3L'] = new SignalDisplay({ x: 900, y: 420 }, 180, SD_MainRoute.Left, ['2L', '3L']);
-    this.signals['4L']   = new SignalDisplay({ x: 300, y: 320 }, 180, SD_MainRoute.Left, ['4L']);
-    this.signals['5L']   = new SignalDisplay({ x: 300, y: 440 }, 180, SD_MainRoute.Left, ['5L']);
+    this.signals['5L']   = new SignalDisplay({ x: 300, y: 320 }, 180, SD_MainRoute.Left, ['5L']);
+    this.signals['4L']   = new SignalDisplay({ x: 300, y: 440 }, 180, SD_MainRoute.Left, ['4L']);
     this.signals['4R5R'] = new SignalDisplay({ x:  10, y: 270 }, 0, SD_MainRoute.Right, ['4R', '5R']);
     this.signals['2R']   = new SignalDisplay({ x: 600, y: 330 }, 0, SD_MainRoute.Left, ['2R']);
     this.signals['3R']   = new SignalDisplay({ x: 600, y: 230 }, 0, SD_MainRoute.Left, ['3R']);
-    this.levers['4'] = new LeverDisplay({ x: 250, y: 250 }, '4');
-    this.levers['5'] = new LeverDisplay({ x: 300, y: 370 }, '5');
+    this.levers['5'] = new LeverDisplay({ x: 250, y: 250 }, '5');
+    this.levers['4'] = new LeverDisplay({ x: 300, y: 370 }, '4');
     this.levers['2'] = new LeverDisplay({ x: 600, y: 370 }, '2');
     this.levers['3'] = new LeverDisplay({ x: 550, y: 250 }, '3');
-    this.levers['11'] = new LeverDisplay({ x: 500, y: 575 }, '11');
+    this.levers['31'] = new LeverDisplay({ x: 500, y: 575 }, '31');
     this.levers['21'] = new LeverDisplay({ x: 600, y: 575 }, '21');
     this.tracks['31T'] = new TrackDisplay({ x: 100, y: 400}, 100, 0, TD_TrackType.Switch_L, '31T');
     this.tracks['21T'] = new TrackDisplay({ x: 800, y: 400}, 110, 180, TD_TrackType.Switch_R, '21T');
@@ -50,7 +50,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.state_switches) {
-      this.updateSwitchStateByName(this.state_switches, '11');
+      this.updateSwitchStateByName(this.state_switches, '31');
       this.updateSwitchStateByName(this.state_switches, '21');
     }
     if (changes.state_signals) {
@@ -116,8 +116,8 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     this.addOutput(control_panel_output.SignalControl, 2, '4L', '4', false);
     this.addOutput(control_panel_output.SignalControl, 3, '5L', '5', false);
 
-    this.addOutput(control_panel_output.SwitchControl, 0, '11Nml', '11', false);
-    this.addOutput(control_panel_output.SwitchControl, 1, '11Rev', '11', true);
+    this.addOutput(control_panel_output.SwitchControl, 0, '31Nml', '31', false);
+    this.addOutput(control_panel_output.SwitchControl, 1, '31Rev', '31', true);
     this.addOutput(control_panel_output.SwitchControl, 2, '21Nml', '21', false);
     this.addOutput(control_panel_output.SwitchControl, 3, '21Rev', '21', true);
 

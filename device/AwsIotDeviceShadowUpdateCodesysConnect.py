@@ -70,18 +70,16 @@ def customShadowCallback_Delete(payload, responseStatus, token):
 # 定位・反位(英語)
 # normal position･reverse position
 
-switch_list = [["11", "1-2番線京都方"],
-               ["12", "1-2番線幡生方"],
-               ["21", "3番線京都方"],
-               ["22", "3番線幡生方"]]
-signal_list = [["1R", "1番上り場内"],
-               ["2R", "1番上り出発"],
-               ["3R", "3番上り場内"],
-               ["4R", "3番上り出発"],
-               ["1L", "2番下り場内"],
-               ["2L", "2番下り出発"],
-               ["3L", "3番下り場内"],
-               ["4L", "3番下り出発"]]
+switch_list = [["31", "1-2番線幡生方"],
+               ["21", "1-2番線京都方"]]
+signal_list = [["2R", "1番上り場内"],
+               ["3R", "2番上り出発"],
+               ["4R", "1番上り場内"],
+               ["5R", "2番上り出発"],
+               ["2L", "1番下り場内"],
+               ["3L", "2番下り出発"],
+               ["4L", "1番下り場内"],
+               ["5L", "2番下り出発"]]
 
 def makeSwitchStateObject(id, switch, position):
     switch = {
@@ -180,7 +178,7 @@ def updateStationStatus():
     setSignalStatusByName(State_Values, "4L", CodesysStationStatus.signal_satus[6])
     setSignalStatusByName(State_Values, "5L", CodesysStationStatus.signal_satus[7])
 
-    setSwitchStatusByName(State_Values, "11", CodesysStationStatus.switch_status[0])
+    setSwitchStatusByName(State_Values, "31", CodesysStationStatus.switch_status[0])
     setSwitchStatusByName(State_Values, "21", CodesysStationStatus.switch_status[1])
 
 
@@ -223,16 +221,16 @@ def updateCtrlStatus():
     signal_lever_status[6] = searchSignalLeverPosByName(State_Values, "4L")
     signal_lever_status[7] = searchSignalLeverPosByName(State_Values, "5L")
         
-    switch_lever_nml[0] = searchSwitchLeverPosByName(State_Values, "11Nml")
+    switch_lever_nml[0] = searchSwitchLeverPosByName(State_Values, "31Nml")
     switch_lever_nml[1] = searchSwitchLeverPosByName(State_Values, "21Nml")
-    switch_lever_rev[0] = searchSwitchLeverPosByName(State_Values, "11Rev")
+    switch_lever_rev[0] = searchSwitchLeverPosByName(State_Values, "31Rev")
     switch_lever_rev[1] = searchSwitchLeverPosByName(State_Values, "21Rev")
     
     CodesysControlStatus.update(signal_lever_status, switch_lever_nml, switch_lever_rev)
     
 
 
-# In[10]:
+# In[ ]:
 
 
 # Custom Shadow callback
@@ -252,7 +250,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     
 
 
-# In[11]:
+# In[ ]:
 
 
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient

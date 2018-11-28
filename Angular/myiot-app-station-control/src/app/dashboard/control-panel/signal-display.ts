@@ -31,9 +31,8 @@ export class SignalDisplay {
         center_offset_y: number,
         signal_num: number,
         i: number ): Position {
-        let offset = new Position;
-        const offset_main = new Position;
-        const offset_sub = new Position;
+        const offset_main = new Position(0, 0);
+        const offset_sub = new Position(0, 0);
 
         if (signal_num === 1) {
             /* 1進路 */
@@ -62,6 +61,7 @@ export class SignalDisplay {
              }
         }
 
+        let offset = new Position(0, 0);
         if (i === 0) {
             /* 主本線 */
             offset = offset_main;
@@ -95,9 +95,8 @@ export class SignalDisplay {
             this.route[i] = new SignalDisplayRoute;
             this.route[i].name = name[i];
             const offset = this.getTextOffset(rotate, this.scale_y, this.center_offset_y, name.length, i);
-            this.route[i].text_pos = new Position;
-            this.route[i].text_pos.x = display_pos.x + offset.x;
-            this.route[i].text_pos.y = display_pos.y + offset.y;
+            this.route[i].text_pos = new Position(display_pos.x + offset.x,
+                                                    display_pos.y + offset.y);
             this.symbol_name += name[i];
         }
     }

@@ -29,18 +29,10 @@ export class LeverDisplay {
         this.symbol_name_knob = 'lever_knob' + name;
         this.symbol_name_stat = 'lever_status' + name;
         this.symbol_name_click = 'lever_click' + name;
-        this.text_pos = new Position;
-        this.text_pos.x = display_pos.x + 15;
-        this.text_pos.y = display_pos.y + 105;
-        this.stat_pos = new Position;
-        this.stat_pos.x = display_pos.x;
-        this.stat_pos.y = display_pos.y - 20;
-        this.click_pos = new Position;
-        this.click_pos.x = display_pos.x;
-        this.click_pos.y = display_pos.y;
-        this.rotate_center_pos = new Position;
-        this.rotate_center_pos.x = display_pos.x + 25;
-        this.rotate_center_pos.y = display_pos.y + 50;
+        this.text_pos           = new Position(display_pos.x + 15, display_pos.y + 105);
+        this.stat_pos           = new Position(display_pos.x,      display_pos.y - 20);
+        this.click_pos          = new Position(display_pos.x,      display_pos.y);
+        this.rotate_center_pos  = new Position(display_pos.x + 25, display_pos.y + 50);
     }
 
     private updateRotate() {

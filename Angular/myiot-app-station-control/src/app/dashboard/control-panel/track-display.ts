@@ -63,15 +63,16 @@ export class TrackDisplay {
         rotate:         number,
         type:           TD_TrackType,
         name:           string) {
-        this.position = new Position;
         this.parts = new Array(3);
         this.symbol_name = name;
         this.length = length;
         this.rotate = rotate;
         this.width = 16;
         this.center_offset = this.width / 2;
-        this.position.x = display_pos.x;
-        this.position.y = display_pos.y - this.center_offset;
+        this.position = new Position(
+            display_pos.x,
+            display_pos.y - this.center_offset
+        );
         this.stroke = 2;
 
         if (type === TD_TrackType.Straight) {
@@ -81,19 +82,13 @@ export class TrackDisplay {
                     || (type === TD_TrackType.Switch_L)) {
             this.parts[0] = new TDParts;
             this.parts[0].shape = this.generateShapeRectangle(48, 4, 0, 0, 0);
-            this.parts[0].pos = new Position;
-            this.parts[0].pos.x = 0;
-            this.parts[0].pos.y = 0;
+            this.parts[0].pos = new Position(0, 0);
             this.parts[1] = new TDParts;
             this.parts[1].shape = this.generateShapeTurnoutBranch();
-            this.parts[1].pos = new Position;
-            this.parts[1].pos.x = 16;
-            this.parts[1].pos.y = this.width;
+            this.parts[1].pos = new Position(16, this.width);
             this.parts[2] = new TDParts;
             this.parts[2].shape = this.generateShapeRectangle(52, 0, 0, 0, 4);
-            this.parts[2].pos = new Position;
-            this.parts[2].pos.x = 44;
-            this.parts[2].pos.y = 0;
+            this.parts[2].pos = new Position(44, 0);
             if (type === TD_TrackType.Switch_L) {
                 this.scale_y = -1;
             } else {

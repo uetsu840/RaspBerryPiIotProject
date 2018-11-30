@@ -32,6 +32,7 @@ export class TrackDisplay {
     scale_y: number;                /* display scale of y (-1 if mirrored) */
     route: TD_SelectedRouteType;    /* selected route of switch */
     exist: boolean;                 /* true if train is detected */
+    is_configured: boolean;         /* true if any route is configured */
 
     private generateShapeRectangle (
         length: number,
@@ -119,10 +120,47 @@ export class TrackDisplay {
 
     updateExistState(exist_num: number) {
         this.exist = (1 === exist_num);
+    }
+
+    clearConfigureState() {
+        this.is_configured = false;
+    }
+
+    activateConfigureState() {
+        this.is_configured = true;
+    }
+
+    private getDisplayColor() {
         if (this.exist) {
-            this.parts[0].display_color = 'red';
+            return 'red';
         } else {
-            this.parts[0].display_color = 'black';
+            if (this.is_configured) {
+                return 'white';
+            } else {
+                return 'black';
+            }
+        }
+    }
+
+
+    updateDisplay() {
+        if (TD_TrackType.Straight === this.type) {
+            this.parts[0].display_color = this.getDisplayColor();
+        } else if ((TD_TrackType.Switch_L === this.type)
+                    || (TD_TrackType.Switch_R === this.type)) {
+            if (TD_SelectedRouteType.Branch === this.route) {
+                this.parts[0].display_color = this.getDisplayColor();
+                this.parts[1].display_color = this.getDisplayColor();
+                this.parts[2].display_color = 'black';
+            } else if (TD_SelectedRouteType.Straight === this.route) {
+                this.parts[0].display_color = this.getDisplayColor();
+                this.parts[1].display_color = 'black';
+                this.parts[2].display_color = this.getDisplayColor();
+            } else {
+                console.log('invalid selected route');
+            }
+        } else {
+            console.log('Invalid route type');
         }
     }
 }

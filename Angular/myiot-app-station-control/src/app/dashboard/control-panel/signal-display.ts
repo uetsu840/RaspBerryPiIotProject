@@ -6,6 +6,7 @@ export class SignalDisplayRoute {
     text_pos: Position;
     id: number;
     display_color: string;
+    is_active: boolean;
 }
 
 export enum SD_MainRoute {
@@ -16,6 +17,8 @@ export enum SD_MainRoute {
 export class SignalDisplay {
     private symbol_name: string;
     private route: SignalDisplayRoute[];
+    private null_route = new Array();
+    private route_list: string[][];
     signal_pos: Position;
     rotate: number;
     center_offset_y: number;
@@ -76,7 +79,8 @@ export class SignalDisplay {
         display_pos:    Position,
         rotate:         number,
         main_route:     SD_MainRoute,
-        name:           string[]) {
+        name:           string[],
+        route_list:     string[][]) {
         this.signal_pos = display_pos;
         this.rotate = rotate;
         if (name.length === 1) {
@@ -91,12 +95,15 @@ export class SignalDisplay {
         }
         this.symbol_name = 'signal';
         this.route = new Array(name.length);
+        this.route_list = route_list;
         for (let i = 0; i < name.length; i++) {
+            const offset = this.getTextOffset(rotate, this.scale_y, this.center_offset_y, name.length, i);
+
             this.route[i] = new SignalDisplayRoute;
             this.route[i].name = name[i];
-            const offset = this.getTextOffset(rotate, this.scale_y, this.center_offset_y, name.length, i);
             this.route[i].text_pos = new Position(display_pos.x + offset.x,
                                                     display_pos.y + offset.y);
+            this.route[i].is_active = false;
             this.symbol_name += name[i];
         }
     }
@@ -104,12 +111,22 @@ export class SignalDisplay {
     updateRouteState(name: string, position: number) {
         for (let i = 0; i < this.route.length; i++) {
             if (this.route[i].name === name) {
-                if (position === 1) {
+                this.route[i].is_active = (position === 1);
+                if (this.route[i].is_active) {
                     this.route[i].display_color = 'lightgreen';
                 } else {
                     this.route[i].display_color = 'dimgrey';
                 }
             }
         }
+    }
+
+    GetActiveRoute(): string[] {
+        for (let i = 0; i < this.route.length; i++) {
+            if (this.route[i].is_active) {
+                return this.route_list[i];
+            }
+        }
+        return this.null_route;
     }
 }

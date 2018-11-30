@@ -16,25 +16,27 @@ class UpdateStationStatus():
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         
         self.signal_display    =  [0 for i in range(16)]
-        self.signal_satus      =  [0 for i in range(16)]
+        self.signal_status     =  [0 for i in range(16)]
         self.signal_locked_nml =  [0 for i in range(16)]
-        self.singal_locked_rev =  [0 for i in range(16)]
+        self.signal_locked_rev =  [0 for i in range(16)]
         self.switch_status     =  [0 for i in range(16)]
         self.switch_locked_nml =  [0 for i in range(16)]
-        self.switch_locked_rev =  [0 for i in range(16)]        
+        self.switch_locked_rev =  [0 for i in range(16)]
+        self.section_status    =  [0 for i in range(16)]
         
         self.sock.bind((self.host, self.port))
 
-    def decode_station_statswitch_locked_revus(self):
+    def decode_station_status(self):
         self.signal_display    = struct.unpack('<16H', self.data[20     :20+32*1])
-        self.signal_satus      = struct.unpack('<16H', self.data[20+32*1:20+32*2])
+        self.signal_status     = struct.unpack('<16H', self.data[20+32*1:20+32*2])
         self.signal_locked_nml = struct.unpack('<16H', self.data[20+32*2:20+32*3])
-        self.singal_locked_rev = struct.unpack('<16H', self.data[20+32*3:20+32*4])
+        self.signal_locked_rev = struct.unpack('<16H', self.data[20+32*3:20+32*4])
         self.switch_status     = struct.unpack('<16H', self.data[20+32*4:20+32*5])
         self.switch_locked_nml = struct.unpack('<16H', self.data[20+32*5:20+32*6])
         self.switch_locked_rev = struct.unpack('<16H', self.data[20+32*6:20+32*7])
+        self.section_status    = struct.unpack('<16H', self.data[20+32*7:20+32*8])
 
     def update(self):
         self.data  = self.sock.recv(self.bufsize)
-        self.decode_station_statswitch_locked_revus()
+        self.decode_station_status()
  

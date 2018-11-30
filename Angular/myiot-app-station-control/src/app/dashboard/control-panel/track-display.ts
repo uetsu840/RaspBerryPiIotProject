@@ -7,21 +7,31 @@ export enum TD_TrackType {
     Switch_L    /* 分岐器―左分岐 */
 }
 
+export enum TD_SelectedRouteType {
+    None,
+    Straight,
+    Branch
+}
+
 class TDParts {
-     shape:     string;
-     pos:       Position;
+     shape:         string;
+     pos:           Position;
+     display_color: string;
 }
 
 export class TrackDisplay {
+    type: TD_TrackType;             /* type of track */
     symbol_name: string;
     position: Position;
-    length: number;          /* length */
+    length: number;                 /* length */
     rotate: number;
-    width: number;           /* width of area */
-    center_offset: number;   /* offset of center (width / 2) */
-    stroke: number;          /* stroke of line */
+    width: number;                  /* width of area */
+    center_offset: number;          /* offset of center (width / 2) */
+    stroke: number;                 /* stroke of line */
     parts: TDParts[];
-    scale_y: number;
+    scale_y: number;                /* display scale of y (-1 if mirrored) */
+    route: TD_SelectedRouteType;    /* selected route of switch */
+    exist: boolean;                 /* true if train is detected */
 
     private generateShapeRectangle (
         length: number,
@@ -63,7 +73,7 @@ export class TrackDisplay {
         rotate:         number,
         type:           TD_TrackType,
         name:           string) {
-        this.parts = new Array(3);
+        this.type = type;
         this.symbol_name = name;
         this.length = length;
         this.rotate = rotate;
@@ -75,6 +85,7 @@ export class TrackDisplay {
         );
         this.stroke = 2;
 
+        this.parts = new Array(3);
         if (type === TD_TrackType.Straight) {
             this.parts[0] = new TDParts;
             this.parts[0].shape = this.generateShapeRectangle(this.length, 0, 0, 0, 0);
@@ -95,6 +106,23 @@ export class TrackDisplay {
                 this.scale_y = 1;
             }
 
+        }
+    }
+
+    updateRouteState(route_num: number) {
+        if (0 === route_num) {
+            this.route = TD_SelectedRouteType.Straight;
+        } else {
+            this.route = TD_SelectedRouteType.Branch;
+        }
+    }
+
+    updateExistState(exist_num: number) {
+        this.exist = (1 === exist_num);
+        if (this.exist) {
+            this.parts[0].display_color = 'red';
+        } else {
+            this.parts[0].display_color = 'black';
         }
     }
 }

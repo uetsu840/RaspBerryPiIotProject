@@ -80,6 +80,10 @@ signal_list = [["2R", "1番上り場内"],
                ["3L", "2番下り出発"],
                ["4L", "1番下り場内"],
                ["5L", "2番下り出発"]]
+section_list = [["31T", "分岐器31"],
+                ["21T", "分岐器21"],
+                ["2R", "2番線"],
+                ["5R", "1番線"]]
 
 def makeSwitchStateObject(id, switch, position):
     switch = {
@@ -100,6 +104,14 @@ def makeSignalStateObject(id, signal):
     }
     return signal
 
+def makeSectionStateObject(id, section, state):
+    section = {
+        "id"          : id,
+        "name"        : section[0],
+        "description" : section[1],
+        "state"       : state
+    }
+    return section
 
 def makeSwitchControlObject(switch, turndir):
     switch = {
@@ -120,6 +132,7 @@ def initObject():
     global State_Values
     switch_state = []
     signal_state  = []
+    section_state = []
     switch_ctrl = []
     signal_ctrl = []
     id = 0
@@ -132,11 +145,15 @@ def initObject():
         signal_state.append(makeSignalStateObject(id, signal_name))
         signal_ctrl.append(makeSignalControlObject(signal_name))
         id += 1
+    for section_info in section_list:
+        section_state.append(makeSectionStateObject(id, section_info, 0))
+        id += 1
     State_Values = {
         "signal_state" : signal_state,
         "signal_ctrl"  : signal_ctrl,
         "switch_state" : switch_state,
-        "switch_ctrl"  : switch_ctrl
+        "switch_ctrl"  : switch_ctrl,
+        "section_state": section_state
     }
 initObject()
 
@@ -164,22 +181,34 @@ def setSignalStatusByName(state_val, name, pos):
         if signal_status["name"] == name:
             signal_status["position"] = pos
 
+def setSectionStatusByName(state_val, section_name, state):
+    for section_status in state_val["section_state"]:
+        if section_status["name"] == section_name:
+            section_status["state"] = state
+        
+            
 def updateStationStatus():
     global State_Values
     global CodesysStationStatus
     
     CodesysStationStatus.update()
-    setSignalStatusByName(State_Values, "2R", CodesysStationStatus.signal_satus[0])
-    setSignalStatusByName(State_Values, "3R", CodesysStationStatus.signal_satus[1])
-    setSignalStatusByName(State_Values, "4R", CodesysStationStatus.signal_satus[2])
-    setSignalStatusByName(State_Values, "5R", CodesysStationStatus.signal_satus[3])
-    setSignalStatusByName(State_Values, "2L", CodesysStationStatus.signal_satus[4])
-    setSignalStatusByName(State_Values, "3L", CodesysStationStatus.signal_satus[5])
-    setSignalStatusByName(State_Values, "4L", CodesysStationStatus.signal_satus[6])
-    setSignalStatusByName(State_Values, "5L", CodesysStationStatus.signal_satus[7])
+    setSignalStatusByName(State_Values, "2R", CodesysStationStatus.signal_status[0])
+    setSignalStatusByName(State_Values, "3R", CodesysStationStatus.signal_status[1])
+    setSignalStatusByName(State_Values, "4R", CodesysStationStatus.signal_status[2])
+    setSignalStatusByName(State_Values, "5R", CodesysStationStatus.signal_status[3])
+    setSignalStatusByName(State_Values, "2L", CodesysStationStatus.signal_status[4])
+    setSignalStatusByName(State_Values, "3L", CodesysStationStatus.signal_status[5])
+    setSignalStatusByName(State_Values, "4L", CodesysStationStatus.signal_status[6])
+    setSignalStatusByName(State_Values, "5L", CodesysStationStatus.signal_status[7])
 
     setSwitchStatusByName(State_Values, "31", CodesysStationStatus.switch_status[0])
     setSwitchStatusByName(State_Values, "21", CodesysStationStatus.switch_status[1])
+    
+    setSectionStatusByName(State_Values, "31T", CodesysStationStatus.section_status[0])
+    setSectionStatusByName(State_Values, "21T", CodesysStationStatus.section_status[1])
+    setSectionStatusByName(State_Values, "2R", CodesysStationStatus.section_status[2])
+    setSectionStatusByName(State_Values, "5R", CodesysStationStatus.section_status[3])
+    
 
 
 # In[9]:
@@ -230,7 +259,7 @@ def updateCtrlStatus():
     
 
 
-# In[ ]:
+# In[10]:
 
 
 # Custom Shadow callback
@@ -250,7 +279,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     
 
 
-# In[ ]:
+# In[11]:
 
 
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient

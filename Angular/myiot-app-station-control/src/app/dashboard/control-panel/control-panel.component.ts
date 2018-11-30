@@ -10,6 +10,7 @@ import { TD_TrackType } from './track-display';
 import { ControlPanelOutput, ControlPanelLeverState } from '../control-panel-output';
 import { Switch } from 'src/app/switch';
 import { Signal } from 'src/app/signal';
+import { Section } from 'src/app/section';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -21,6 +22,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class ControlPanelComponent implements OnInit, OnChanges {
   @Input() state_switches: Switch[];
   @Input() state_signals: Signal[];
+  @Input() state_sections: Section[];
   @Output() event = new EventEmitter<ControlPanelOutput>();
 
   signals: { [index: string]: SignalDisplay; } = {};
@@ -44,8 +46,8 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     this.levers['21'] = new LeverDisplay({ x: 600, y: 575 }, '21');
     this.tracks['31T'] = new TrackDisplay({ x: 100, y: 400}, 100, 0, TD_TrackType.Switch_L, '31T');
     this.tracks['21T'] = new TrackDisplay({ x: 800, y: 400}, 110, 180, TD_TrackType.Switch_R, '21T');
-    this.tracks['2RT'] = new TrackDisplay({ x: 205, y: 300}, 490, 0, TD_TrackType.Straight, '2RT');
-    this.tracks['5RT'] = new TrackDisplay({ x: 205, y: 400}, 490, 0, TD_TrackType.Straight, '5RT');
+    this.tracks['2R'] = new TrackDisplay({ x: 205, y: 300}, 490, 0, TD_TrackType.Straight, '2R');
+    this.tracks['5R'] = new TrackDisplay({ x: 205, y: 400}, 490, 0, TD_TrackType.Straight, '5R');
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -63,19 +65,32 @@ export class ControlPanelComponent implements OnInit, OnChanges {
       this.updateSignalStateByName(this.state_signals, this.signals['4L'], '4L');
       this.updateSignalStateByName(this.state_signals, this.signals['5L'], '5L');
     }
+    if (changes.state_sections) {
+        this.updateSectionStateByName(this.state_sections, this.tracks['31T'], '31T');
+        this.updateSectionStateByName(this.state_sections, this.tracks['21T'], '21T');
+        this.updateSectionStateByName(this.state_sections, this.tracks['2R'], '2R');
+        this.updateSectionStateByName(this.state_sections, this.tracks['5R'], '5R');
+    }
   }
 
+  /**
+   *    update state of switches
+   */
   private updateSwitchStateByName(
     state_switches: Switch[],
     name: string) {
     for (let i = 0; i < state_switches.length; i++) {
       if (state_switches[i].name === name) {
         this.levers[name].updatePosition(state_switches[i].position);
+        this.tracks[name + 'T'].updateRouteState(state_switches[i].position);
         break;
       }
     }
   }
 
+  /**
+   *    update state of signals
+   */
   private updateSignalStateByName(
     state_signals: Signal[],
     display_signal: SignalDisplay,
@@ -86,6 +101,23 @@ export class ControlPanelComponent implements OnInit, OnChanges {
       }
     }
   }
+
+  /**
+   *    update state of train detection
+   */
+  private updateSectionStateByName(
+    state_section: Section[],
+    display_track: TrackDisplay,
+    name: string) {
+    console.log(state_section.length);
+    for (let i = 0; i < state_section.length; i++) {
+      if (state_section[i].name === name) {
+        console.log(i, state_section[i].state);
+        display_track.updateExistState(state_section[i].state);
+      }
+    }
+  }
+
 
   private addOutput(
     output: ControlPanelLeverState[],

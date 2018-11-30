@@ -1,8 +1,10 @@
 <svg:g>
     <symbol attr.id="{{track.symbol_name}}">
+
         <polyline 
             attr.points="{{track.parts[0].shape}}" 
-            stroke="white" stroke-width="2"  fill="none"/>
+            stroke="white" stroke-width="2"  
+            attr.fill="{{track.parts[0].display_color}}"/>
     </symbol>
     <svg:use  
         attr.xlink:href="#{{track.symbol_name}}"
@@ -14,6 +16,6 @@
                       {{track.center_offset}})
                translate(0 {{track.center_offset}})
                scale(1 {{track.scale_y}})
-               translate(0 -{{track.center_offset}})        ">
+               translate(0 -{{track.center_offset}})">
     </svg:use>
 </svg:g>

@@ -15,8 +15,8 @@ export enum SD_MainRoute {
 }
 
 export class SignalDisplay {
-    private symbol_name: string;
-    private route: SignalDisplayRoute[];
+    symbol_name: string;
+    route: SignalDisplayRoute[];
     private null_route = new Array();
     private route_list: string[][];
     signal_pos: Position;

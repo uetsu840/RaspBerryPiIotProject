@@ -7,16 +7,16 @@ enum LeverPosition {
 }
 
 export class LeverDisplay {
-    private symbol_name_knob: string;
-    private symbol_name_stat: string;
-    private symbol_name_click: string;
-    private text_pos: Position;
-    private stat_pos: Position;
-    private click_pos: Position;
-    private position: LeverPosition;
-    private rotate_center_pos: Position;
-    private normal_lamp_color: string;
-    private reverse_lamp_color: string;
+    symbol_name_knob: string;
+    symbol_name_stat: string;
+    symbol_name_click: string;
+    text_pos: Position;
+    stat_pos: Position;
+    click_pos: Position;
+    position: LeverPosition;
+    rotate_center_pos: Position;
+    normal_lamp_color: string;
+    reverse_lamp_color: string;
     display_pos: Position;
     rotate: number;
     name: string;

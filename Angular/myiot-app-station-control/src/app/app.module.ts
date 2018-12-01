@@ -21,36 +21,36 @@ import { TrackStraightComponent } from './dashboard/control-panel/track-straight
 import { TrackSwitchComponent } from './dashboard/control-panel/track-switch/track-switch.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SignalsComponent,
-    SignalDetailComponent,
-    MessagesComponent,
-    DashboardComponent,
-    SwitchesComponent,
-    SwitchDetailComponent,
-    ControlPanelComponent,
-    SingleSignalComponent,
-    TwoWaySignalRComponent,
-    LeverSignalComponent,
-    LeverSwitchComponent,
-    TrackStraightComponent,
-    TrackSwitchComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
+    declarations: [
+        AppComponent,
+        SignalsComponent,
+        SignalDetailComponent,
+        MessagesComponent,
+        DashboardComponent,
+        SwitchesComponent,
+        SwitchDetailComponent,
+        ControlPanelComponent,
+        SingleSignalComponent,
+        TwoWaySignalRComponent,
+        LeverSignalComponent,
+        LeverSwitchComponent,
+        TrackStraightComponent,
+        TrackSwitchComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
 
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-//    HttpClientInMemoryWebApiModule.forRoot(
-//      InMemoryDataService, { dataEncapsulation: false }
-//    )
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+        // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+        // and returns simulated server responses.
+        // Remove it when a real server is ready to receive requests.
+        //    HttpClientInMemoryWebApiModule.forRoot(
+        //      InMemoryDataService, { dataEncapsulation: false }
+        //    )
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

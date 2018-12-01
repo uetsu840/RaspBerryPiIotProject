@@ -1,0 +1,275 @@
+{
+    "station_name": "北佐津",
+    "signals": [
+        {
+            "name": "2L3L",
+            "pos": {
+                "x": 900,
+                "y": 420
+            },
+            "rotate": 180,
+            "shape": "Route_Left",
+            "routes": [
+                "2L",
+                "3L"
+            ],
+            "sections": [
+                [
+                    "21T",
+                    "5R"
+                ],
+                [
+                    "21T",
+                    "2R"
+                ]
+            ]
+        },
+        {
+            "name": "5L",
+            "pos": {
+                "x": 300,
+                "y": 320
+            },
+            "rotate": 180,
+            "shape": "Route_Left",
+            "routes": [
+                "5L"
+            ],
+            "sections": [
+                [
+                    "5R",
+                    "31T"
+                ]
+            ]
+        },
+        {
+            "name": "4L",
+            "pos": {
+                "x": 300,
+                "y": 440
+            },
+            "rotate": 180,
+            "shape": "Route_Left",
+            "routes": [
+                "4L"
+            ],
+            "sections": [
+                [
+                    "2R",
+                    "31T"
+                ]
+            ]
+        },
+        {
+            "name": "4R5R",
+            "pos": {
+                "x": 10,
+                "y": 270
+            },
+            "rotate": 0,
+            "shape": "Route_Right",
+            "routes": [
+                "4R",
+                "5R"
+            ],
+            "sections": [
+                [
+                    "31T",
+                    "5R"
+                ],
+                [
+                    "31T",
+                    "2R"
+                ]
+            ]
+        },
+        {
+            "name": "2R",
+            "pos": {
+                "x": 600,
+                "y": 330
+            },
+            "rotate": 0,
+            "shape": "Route_Left",
+            "routes": [
+                "2R"
+            ],
+            "sections": [
+                [
+                    "5R",
+                    "21T"
+                ]
+            ]
+        },
+        {
+            "name": "3R",
+            "pos": {
+                "x": 600,
+                "y": 230
+            },
+            "rotate": 0,
+            "shape": "Route_Left",
+            "routes": [
+                "3R"
+            ],
+            "sections": [
+                [
+                    "2R",
+                    "21T"
+                ]
+            ]
+        }
+    ],
+    "levers": [
+        {
+            "name": "5",
+            "pos": {
+                "x": 250,
+                "y": 250
+            },
+            "type": "signal",
+            "control": [
+                {
+                    "target": "5L",
+                    "idx": 7
+                },
+                {
+                    "target": "5R",
+                    "idx": 3
+                }   
+            ]
+        },
+        {
+            "name": "4",
+            "pos": {
+                "x": 300,
+                "y": 370
+            },
+            "type": "signal",
+            "control": [
+                {
+                    "target": "4L",
+                    "idx": 6
+                },
+                {
+                    "target": "4R",
+                    "idx": 2
+                }   
+            ]
+        },
+        {
+            "name": "2",
+            "pos": {
+                "x": 600,
+                "y": 370
+            },
+            "type": "signal",
+            "control": [
+                {
+                    "target": "2L",
+                    "idx": 4
+                },
+                {
+                    "target": "2R",
+                    "idx": 0
+                }   
+            ]
+        },
+        {
+            "name": "3",
+            "pos": {
+                "x": 550,
+                "y": 250
+            },
+            "type": "signal",
+            "control": [
+                {
+                    "target": "3L",
+                    "idx": 5
+                },
+                {
+                    "target": "3R",
+                    "idx": 1
+                }   
+            ]
+        },
+        {
+            "name": "21",
+            "pos": {
+                "x": 500,
+                "y": 575
+            },
+            "type": "switch",
+            "control": [
+                {
+                    "target": "21Nml",
+                    "idx": 0
+                },
+                {
+                    "target": "21Rev",
+                    "idx": 2
+                }   
+            ]
+        },
+        {
+            "name": "31",
+            "pos": {
+                "x": 600,
+                "y": 575
+            },
+            "type": "switch",
+            "control": [
+                {
+                    "target": "31Nml",
+                    "idx": 1
+                },
+                {
+                    "target": "31Rev",
+                    "idx": 3
+                }   
+            ]
+        }
+    ],
+    "tracks": [
+        {
+            "name": "31T",
+            "pos": {
+                "x": 100,
+                "y": 400
+            },
+            "length": 100,
+            "type": "Switch_L",
+            "rotate": 0
+        },
+        {
+            "name": "21T",
+            "pos": {
+                "x": 800,
+                "y": 400
+            },
+            "length": 110,
+            "type": "Switch_R",
+            "rotate": 180
+        },
+        {
+            "name": "2R",
+            "pos": {
+                "x": 205,
+                "y": 300
+            },
+            "length": 490,
+            "type": "Straight",
+            "rotate": 0
+        },
+        {
+            "name": "5R",
+            "pos": {
+                "x": 205,
+                "y": 400
+            },
+            "length": 490,
+            "type": "Straight",
+            "rotate": 0
+        }
+    ]
+}

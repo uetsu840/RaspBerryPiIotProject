@@ -67,14 +67,23 @@ export class TrackDisplay {
         return polyline_str;
     }
 
+    private getTrackType(type: string): TD_TrackType {
+        if (type === 'Straight') {
+            return TD_TrackType.Straight;
+        } else if (type === 'Switch_R') {
+            return TD_TrackType.Switch_R;
+        } else {
+            return TD_TrackType.Switch_L;
+        }
+    }
 
     constructor(
         display_pos:    Position,
         length:         number,
         rotate:         number,
-        type:           TD_TrackType,
+        type:           string,
         name:           string) {
-        this.type = type;
+        this.type = this.getTrackType(type);
         this.symbol_name = name;
         this.length = length;
         this.rotate = rotate;
@@ -87,11 +96,11 @@ export class TrackDisplay {
         this.stroke = 2;
 
         this.parts = new Array(3);
-        if (type === TD_TrackType.Straight) {
+        if (this.type === TD_TrackType.Straight) {
             this.parts[0] = new TDParts;
             this.parts[0].shape = this.generateShapeRectangle(this.length, 0, 0, 0, 0);
-        } else if ((type === TD_TrackType.Switch_R)
-                    || (type === TD_TrackType.Switch_L)) {
+        } else if ((this.type === TD_TrackType.Switch_R)
+                    || (this.type === TD_TrackType.Switch_L)) {
             this.parts[0] = new TDParts;
             this.parts[0].shape = this.generateShapeRectangle(48, 4, 0, 0, 0);
             this.parts[0].pos = new Position(0, 0);
@@ -101,7 +110,7 @@ export class TrackDisplay {
             this.parts[2] = new TDParts;
             this.parts[2].shape = this.generateShapeRectangle(52, 0, 0, 0, 4);
             this.parts[2].pos = new Position(44, 0);
-            if (type === TD_TrackType.Switch_L) {
+            if (this.type === TD_TrackType.Switch_L) {
                 this.scale_y = -1;
             } else {
                 this.scale_y = 1;

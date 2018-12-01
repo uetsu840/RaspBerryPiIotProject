@@ -10,6 +10,7 @@ export class SignalDisplayRoute {
 }
 
 export enum SD_MainRoute {
+    None,   /* 分岐なし */
     Left,   /* 進行方向左側が主本線 */
     Right   /* 進行方向右側が主本線 */
 }
@@ -75,12 +76,25 @@ export class SignalDisplay {
         return offset;
     }
 
+    private encodeShape(shape: string): SD_MainRoute {
+        if ('Route_Left' === shape) {
+            return SD_MainRoute.Left;
+        } else if ('Route_Right' === shape) {
+            return SD_MainRoute.Right;
+        } else {
+            console.log('invalid shape description');
+            return SD_MainRoute.None;
+        }
+    }
+
     constructor(
         display_pos:    Position,
         rotate:         number,
-        main_route:     SD_MainRoute,
+        shape:          string,
         name:           string[],
         route_list:     string[][]) {
+        let main_route: SD_MainRoute;
+        main_route = this.encodeShape(shape);
         this.signal_pos = display_pos;
         this.rotate = rotate;
         if (name.length === 1) {

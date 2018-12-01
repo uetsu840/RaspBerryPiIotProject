@@ -11,6 +11,7 @@ import { ControlPanelOutput, ControlPanelLeverState } from '../control-panel-out
 import { Switch } from 'src/app/switch';
 import { Signal } from 'src/app/signal';
 import { Section } from 'src/app/section';
+import { StationConfig, TrackConfig, LeverConfig, SignalConfig } from 'src/app/station-config';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -20,6 +21,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 
 export class ControlPanelComponent implements OnInit, OnChanges {
+    @Input() station_config: StationConfig;
     @Input() state_switches: Switch[];
     @Input() state_signals: Signal[];
     @Input() state_sections: Section[];
@@ -31,49 +33,82 @@ export class ControlPanelComponent implements OnInit, OnChanges {
 
     constructor() { }
 
-    ngOnInit() {
-        this.signals['2L3L'] = new SignalDisplay({ x: 900, y: 420 }, 180, SD_MainRoute.Left, ['2L', '3L'], [['21T', '5R'], ['21T', '2R']]);
-        this.signals['5L'] = new SignalDisplay({ x: 300, y: 320 }, 180, SD_MainRoute.Left, ['5L'], [['5R', '31T']]);
-        this.signals['4L'] = new SignalDisplay({ x: 300, y: 440 }, 180, SD_MainRoute.Left, ['4L'], [['2R', '31T']]);
-        this.signals['4R5R'] = new SignalDisplay({ x: 10, y: 270 }, 0, SD_MainRoute.Right, ['4R', '5R'], [['31T', '5R'], ['31T', '2R']]);
-        this.signals['2R'] = new SignalDisplay({ x: 600, y: 330 }, 0, SD_MainRoute.Left, ['2R'], [['5R', '21T']]);
-        this.signals['3R'] = new SignalDisplay({ x: 600, y: 230 }, 0, SD_MainRoute.Left, ['3R'], [['2R', '21T']]);
-        this.levers['5'] = new LeverDisplay({ x: 250, y: 250 }, '5');
-        this.levers['4'] = new LeverDisplay({ x: 300, y: 370 }, '4');
-        this.levers['2'] = new LeverDisplay({ x: 600, y: 370 }, '2');
-        this.levers['3'] = new LeverDisplay({ x: 550, y: 250 }, '3');
-        this.levers['31'] = new LeverDisplay({ x: 500, y: 575 }, '31');
-        this.levers['21'] = new LeverDisplay({ x: 600, y: 575 }, '21');
-        this.tracks['31T'] = new TrackDisplay({ x: 100, y: 400 }, 100, 0, TD_TrackType.Switch_L, '31T');
-        this.tracks['21T'] = new TrackDisplay({ x: 800, y: 400 }, 110, 180, TD_TrackType.Switch_R, '21T');
-        this.tracks['2R'] = new TrackDisplay({ x: 205, y: 300 }, 490, 0, TD_TrackType.Straight, '2R');
-        this.tracks['5R'] = new TrackDisplay({ x: 205, y: 400 }, 490, 0, TD_TrackType.Straight, '5R');
+    /**
+     * generate patrs
+     */
+    private generateSignal(signal_conf: SignalConfig) {
+        this.signals[signal_conf.name] = new SignalDisplay(
+            signal_conf.pos,
+            signal_conf.rotate,
+            signal_conf.shape,
+            signal_conf.routes,
+            signal_conf.sections
+        );
+    }
 
+    private generateLever(lever_conf: LeverConfig) {
+        this.levers[lever_conf.name] = new LeverDisplay(
+            lever_conf.pos,
+            lever_conf.name
+        );
+    }
+
+    private generateTrack(track_conf: TrackConfig) {
+        this.tracks[track_conf.name] = new TrackDisplay(
+            track_conf.pos,
+            track_conf.length,
+            track_conf.rotate,
+            track_conf.type,
+            track_conf.name);
+    }
+
+    private generateDashboard(conf: StationConfig) {
+        for (const signal of conf.signals) {
+            this.generateSignal(signal);
+        }
+        for (const lever of conf.levers) {
+            this.generateLever(lever);
+        }
+        for (const track of conf.tracks) {
+            this.generateTrack(track);
+        }
         this.refreshConfigureState();
     }
 
+    ngOnInit() {
+        //        this.generateDashboard();
+    }
+
     ngOnChanges(changes: SimpleChanges) {
+        let conf: StationConfig;
+        conf = this.station_config;
+
+        if (changes.station_config) {
+            console.log('Station Config Get');
+            this.generateDashboard(this.station_config);
+        }
         if (changes.state_switches) {
             this.updateSwitchStateByName(this.state_switches, '31');
             this.updateSwitchStateByName(this.state_switches, '21');
         }
         if (changes.state_signals) {
-            this.updateSignalStateByName(this.state_signals, this.signals['2R'], '2R');
-            this.updateSignalStateByName(this.state_signals, this.signals['3R'], '3R');
-            this.updateSignalStateByName(this.state_signals, this.signals['2L3L'], '2L');
-            this.updateSignalStateByName(this.state_signals, this.signals['2L3L'], '3L');
-            this.updateSignalStateByName(this.state_signals, this.signals['4R5R'], '4R');
-            this.updateSignalStateByName(this.state_signals, this.signals['4R5R'], '5R');
-            this.updateSignalStateByName(this.state_signals, this.signals['4L'], '4L');
-            this.updateSignalStateByName(this.state_signals, this.signals['5L'], '5L');
-
+            for (const signal of conf.signals) {
+                for (const route of signal.routes) {
+                    this.updateSignalStateByName(
+                        this.state_signals,
+                        this.signals[signal.name],
+                        route
+                    );
+                }
+            }
             this.refreshConfigureState();
         }
         if (changes.state_sections) {
-            this.updateSectionStateByName(this.state_sections, this.tracks['31T'], '31T');
-            this.updateSectionStateByName(this.state_sections, this.tracks['21T'], '21T');
-            this.updateSectionStateByName(this.state_sections, this.tracks['2R'], '2R');
-            this.updateSectionStateByName(this.state_sections, this.tracks['5R'], '5R');
+            for (const track of conf.tracks) {
+                this.updateSectionStateByName(this.state_sections,
+                    this.tracks[track.name],
+                    track.name);
+            }
         }
     }
 
@@ -123,29 +158,23 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     private refreshConfigureStateOne(signal_name) {
         let route_list: string[];
         route_list = this.signals[signal_name].GetActiveRoute();
-        for (let route_idx = 0; route_idx < route_list.length; route_idx++) {
-            console.log(route_list[route_idx]);
-            this.tracks[route_list[route_idx]].activateConfigureState();
+        for (const route of route_list) {
+            this.tracks[route].activateConfigureState();
         }
     }
 
     private refreshConfigureState() {
-        this.tracks['31T'].clearConfigureState();
-        this.tracks['21T'].clearConfigureState();
-        this.tracks['2R'].clearConfigureState();
-        this.tracks['5R'].clearConfigureState();
+        for (const track of this.station_config.tracks) {
+            this.tracks[track.name].clearConfigureState();
+        }
 
-        this.refreshConfigureStateOne('2L3L');
-        this.refreshConfigureStateOne('4L');
-        this.refreshConfigureStateOne('5L');
-        this.refreshConfigureStateOne('4R5R');
-        this.refreshConfigureStateOne('2R');
-        this.refreshConfigureStateOne('3R');
+        for (const signal of this.station_config.signals) {
+            this.refreshConfigureStateOne(signal.name);
+        }
 
-        this.tracks['31T'].updateDisplay();
-        this.tracks['21T'].updateDisplay();
-        this.tracks['2R'].updateDisplay();
-        this.tracks['5R'].updateDisplay();
+        for (const track of this.station_config.tracks) {
+            this.tracks[track.name].updateDisplay();
+        }
     }
 
     private addOutput(
@@ -168,20 +197,24 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     onEvent() {
         const control_panel_output: ControlPanelOutput
             = { SignalControl: new Array, SwitchControl: new Array };
-        this.addOutput(control_panel_output.SignalControl, 4, '2R', '2', true);
-        this.addOutput(control_panel_output.SignalControl, 5, '3R', '3', true);
-        this.addOutput(control_panel_output.SignalControl, 6, '4R', '4', true);
-        this.addOutput(control_panel_output.SignalControl, 7, '5R', '5', true);
-        this.addOutput(control_panel_output.SignalControl, 0, '2L', '2', false);
-        this.addOutput(control_panel_output.SignalControl, 1, '3L', '3', false);
-        this.addOutput(control_panel_output.SignalControl, 2, '4L', '4', false);
-        this.addOutput(control_panel_output.SignalControl, 3, '5L', '5', false);
 
-        this.addOutput(control_panel_output.SwitchControl, 0, '31Nml', '31', false);
-        this.addOutput(control_panel_output.SwitchControl, 1, '31Rev', '31', true);
-        this.addOutput(control_panel_output.SwitchControl, 2, '21Nml', '21', false);
-        this.addOutput(control_panel_output.SwitchControl, 3, '21Rev', '21', true);
+        for (const lever of this.station_config.levers) {
+            const idx_0 = lever.control[0].idx;
+            const idx_1 = lever.control[1].idx;
+            const target_0 = lever.control[0].target;
+            const target_1 = lever.control[1].target;
 
+            if (lever.type === 'signal') {
+                this.addOutput(control_panel_output.SignalControl, idx_0, target_0, lever.name, true);
+                this.addOutput(control_panel_output.SignalControl, idx_1, target_1, lever.name, false);
+            } else if (lever.type === 'switch') {
+                this.addOutput(control_panel_output.SwitchControl, idx_0, target_0, lever.name, true);
+                this.addOutput(control_panel_output.SwitchControl, idx_1, target_1, lever.name, false);
+            } else {
+                console.log('invalid lever type');
+            }
+
+        }
         this.event.emit(control_panel_output);
     }
 }

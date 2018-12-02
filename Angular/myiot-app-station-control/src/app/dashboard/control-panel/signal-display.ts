@@ -16,7 +16,9 @@ export enum SD_MainRoute {
 }
 
 export class SignalDisplay {
-    symbol_name: string;
+    parts_symbol_name: string;
+    assy_symbol_name: string;
+
     route: SignalDisplayRoute[];
     private null_route = new Array();
     private route_list: string[][];
@@ -24,6 +26,7 @@ export class SignalDisplay {
     rotate: number;
     center_offset_y: number;
     scale_y: number;
+    route_num: number;    /* 1: single, 2: two-way */
 
     private degToRad(deg: number) {
         return deg * Math.PI / 180;
@@ -97,6 +100,7 @@ export class SignalDisplay {
         main_route = this.encodeShape(shape);
         this.signal_pos = display_pos;
         this.rotate = rotate;
+        this.route_num = name.length;
         if (name.length === 1) {
             this.center_offset_y = 25;
         } else {
@@ -107,7 +111,8 @@ export class SignalDisplay {
         } else if (main_route === SD_MainRoute.Right) {
             this.scale_y = -1;
         }
-        this.symbol_name = 'signal';
+        this.parts_symbol_name = 'tw_signal_parts_';
+        this.assy_symbol_name  = 'tw_signal_assy_';
         this.route = new Array(name.length);
         this.route_list = route_list;
         for (let i = 0; i < name.length; i++) {
@@ -118,7 +123,8 @@ export class SignalDisplay {
             this.route[i].text_pos = new Position(display_pos.x + offset.x,
                                                     display_pos.y + offset.y);
             this.route[i].is_active = false;
-            this.symbol_name += name[i];
+            this.parts_symbol_name += name[i];
+            this.assy_symbol_name  += name[i];
         }
     }
 

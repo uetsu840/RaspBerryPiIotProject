@@ -9,7 +9,7 @@
     <svg:g *ngFor = "let signal_name of signal_two_way_name_list"
         app-two-way-signal-r [signal]="signals[signal_name]" />
     <svg:g *ngFor = "let signal_name of signal_single_name_list"
-        app-single-signal [signal]="signals[signal_name]" />
+        app-two-way-signal-r [signal]="signals[signal_name]" />
 
     <svg:g *ngFor = "let track_name of track_straight_name_list"
         app-track-straight [track]="tracks[track_name]"></svg:g>

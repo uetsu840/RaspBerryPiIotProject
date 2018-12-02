@@ -5,38 +5,67 @@
     ・signal.scale_y で鏡像(主本線と副本線を反転する) を指定。
     ・signal.rotate で回転角度を指定。
 -->
-<svg:g>
-  <symbol attr.id="{{signal.symbol_name}}" viewbox="0 0 110 100">
-    <line x1="2" y1="10" x2="2" y2="40" stroke="white" stroke-width="4" />
-    <line x1="0" y1="25" x2="60" y2="25" stroke="white" stroke-width="4" />
-    <circle cx="85" cy="25" r="23" stroke="white" 
-      attr.fill="{{signal.route[0].display_color}}" stroke-width="4" />
-    <line x1="30" y1="25" x2="30" y2="75" stroke="white" stroke-width="4" />
-    <line x1="28" y1="75" x2="45" y2="75" stroke="white" stroke-width="4" />
-    <circle cx="70" cy="75" r="23" stroke="white" 
-      attr.fill="{{signal.route[1].display_color}}" stroke-width="4" />
-  </symbol>
-  <svg:use
-     x="0" y="0"
-     attr.xlink:href="#{{signal.symbol_name}}"
-     attr.transform="
+<svg:g *ngIf="signal.route_num == 2">
+    <!-- 
+        場内信号機(two way signal)
+    -->
+    <symbol attr.id="{{signal.parts_symbol_name}}" viewbox="0 0 110 100">
+        <line x1="2" y1="10" x2="2" y2="40" stroke="white" stroke-width="4" />
+        <line x1="0" y1="25" x2="60" y2="25" stroke="white" stroke-width="4" />
+        <circle cx="85" cy="25" r="23" stroke="white" 
+            attr.fill="{{signal.route[0].display_color}}" stroke-width="4" />
+        <line x1="30" y1="25" x2="30" y2="75" stroke="white" stroke-width="4" />
+        <line x1="28" y1="75" x2="45" y2="75" stroke="white" stroke-width="4" />
+        <circle cx="70" cy="75" r="23" stroke="white" 
+            attr.fill="{{signal.route[1].display_color}}" stroke-width="4" />
+    </symbol>
+    <symbol attr.id="{{signal.assy_symbol_name}}">
+        <svg:use
+            x="0" y="0"
+            attr.xlink:href="#{{signal.parts_symbol_name}}"
+            attr.transform="
+                translate({{signal.signal_pos.x}}, {{signal.signal_pos.y}}),
+                rotate({{signal.rotate}} 
+                        0 
+                        {{signal.center_offset_y}})
+                translate(0 {{signal.center_offset_y}})
+                scale(1 {{signal.scale_y}})
+                translate(0 -{{signal.center_offset_y}})
+            ">
+        </svg:use>
+        <svg:text 
+            attr.x="{{signal.route[0].text_pos.x}}"
+            attr.y="{{signal.route[0].text_pos.y}}" fill="white" font-size="30">
+                {{signal.route[0].name}}
+        </svg:text>
+        <svg:text 
+            attr.x="{{signal.route[1].text_pos.x}}"
+            attr.y="{{signal.route[1].text_pos.y}}" fill="white" font-size="30">
+                {{signal.route[1].name}}
+        </svg:text>
+    </symbol>
+    <svg:use attr.xlink:href="#{{signal.assy_symbol_name}}"></svg:use>
+</svg:g>
+<svg:g *ngIf="signal.route_num == 1">
+    <!-- 
+        出発信号機(one way signal)
+    -->
+    <symbol attr.id="{{signal.parts_symbol_name}}">
+        <line x1="2" y1="10" x2="2" y2="40" stroke="white" stroke-width="4" />
+        <line x1="0" y1="25" x2="50" y2="25" stroke="white" stroke-width="4" />
+        <circle cx="75" cy="25" r="23" stroke="white" attr.fill="{{signal.route[0].display_color}}" stroke-width="4" />
+    </symbol>
+    <symbol attr.id="{{signal.assy_symbol_name}}">
+        <svg:use x="0" y="0" attr.xlink:href="#{{signal.parts_symbol_name}}" attr.transform="
             translate({{signal.signal_pos.x}}, {{signal.signal_pos.y}}),
             rotate({{signal.rotate}} 
-                   0 
-                   {{signal.center_offset_y}})
-            translate(0 {{signal.center_offset_y}})
-            scale(1 {{signal.scale_y}})
-            translate(0 -{{signal.center_offset_y}})
-        ">
-  </svg:use>
-  <svg:text 
-    attr.x="{{signal.route[0].text_pos.x}}"
-    attr.y="{{signal.route[0].text_pos.y}}" fill="white" font-size="30">
-    {{signal.route[0].name}}
-  </svg:text>
-    <svg:text 
-    attr.x="{{signal.route[1].text_pos.x}}"
-    attr.y="{{signal.route[1].text_pos.y}}" fill="white" font-size="30">
-    {{signal.route[1].name}}
-  </svg:text>
+                    0 
+                    {{signal.center_offset_y}})
+            ">
+        </svg:use>
+        <svg:text attr.x="{{signal.route[0].text_pos.x}}" attr.y="{{signal.route[0].text_pos.y}}" fill="white" font-size="30">
+            {{signal.route[0].name}}
+        </svg:text>    
+    </symbol>
+    <svg:use attr.xlink:href="#{{signal.assy_symbol_name}}"></svg:use>
 </svg:g>

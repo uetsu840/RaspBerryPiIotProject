@@ -70,7 +70,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
             track_conf.name);
     }
 
-    private generateDashboard(conf: StationConfig) {
+    private generateControlPanel(conf: StationConfig) {
         for (const signal of conf.signals) {
             this.generateSignal(signal);
         }
@@ -123,8 +123,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
         conf = this.station_config;
 
         if (changes.station_config) {
-            console.log('Station Config Get');
-            this.generateDashboard(this.station_config);
+            this.generateControlPanel(this.station_config);
         }
         if (changes.state_switches) {
             /* update switch state */

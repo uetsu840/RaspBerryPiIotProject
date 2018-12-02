@@ -97,10 +97,12 @@ export class TrackDisplay {
 
         this.parts = new Array(3);
         if (this.type === TD_TrackType.Straight) {
+            this.route = TD_SelectedRouteType.None;
             this.parts[0] = new TDParts;
             this.parts[0].shape = this.generateShapeRectangle(this.length, 0, 0, 0, 0);
         } else if ((this.type === TD_TrackType.Switch_R)
                     || (this.type === TD_TrackType.Switch_L)) {
+            this.route = TD_SelectedRouteType.Straight;
             this.parts[0] = new TDParts;
             this.parts[0].shape = this.generateShapeRectangle(48, 4, 0, 0, 0);
             this.parts[0].pos = new Position(0, 0);
@@ -151,22 +153,22 @@ export class TrackDisplay {
         }
     }
 
-
     updateDisplay() {
         if (TD_TrackType.Straight === this.type) {
             this.parts[0].display_color = this.getDisplayColor();
         } else if ((TD_TrackType.Switch_L === this.type)
                     || (TD_TrackType.Switch_R === this.type)) {
-            if (TD_SelectedRouteType.Branch === this.route) {
+            const route = this.route;
+            if (TD_SelectedRouteType.Branch === route) {
                 this.parts[0].display_color = this.getDisplayColor();
                 this.parts[1].display_color = this.getDisplayColor();
                 this.parts[2].display_color = 'black';
-            } else if (TD_SelectedRouteType.Straight === this.route) {
+            } else if (TD_SelectedRouteType.Straight === route) {
                 this.parts[0].display_color = this.getDisplayColor();
                 this.parts[1].display_color = 'black';
                 this.parts[2].display_color = this.getDisplayColor();
             } else {
-                console.log('invalid selected route');
+                console.log('invalid selected route', route);
             }
         } else {
             console.log('Invalid route type');

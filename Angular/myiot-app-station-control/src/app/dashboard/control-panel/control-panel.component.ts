@@ -32,12 +32,9 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     tracks: { [index: string]: TrackDisplay; } = {};
 
     /* name list for components */
-    lever_signal_name_list: string[];
-    lever_switch_name_list: string[];
-    signal_two_way_name_list: string[];
-    signal_single_name_list: string[];
-    track_straight_name_list: string[];
-    track_switch_name_list: string[];
+    lever_name_list: string[];
+    signal_name_list: string[];
+    track_name_list: string[];
 
     constructor() { }
 
@@ -55,9 +52,18 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     }
 
     private generateLever(lever_conf: LeverConfig) {
+        let control_type: number;
+        if ('signal' ===  lever_conf.type) {
+            control_type = 1;
+        } else if ('switch' === lever_conf.type) {
+            control_type = 2;
+        } else {
+            console.log('Invalid Lever Type');
+        }
         this.levers[lever_conf.name] = new LeverDisplay(
             lever_conf.pos,
-            lever_conf.name
+            lever_conf.name,
+            control_type
         );
     }
 
@@ -82,35 +88,18 @@ export class ControlPanelComponent implements OnInit, OnChanges {
         }
 
         /* genelate list for display */
-        this.lever_signal_name_list = [];
-        this.lever_switch_name_list = [];
-        this.signal_two_way_name_list = [];
-        this.signal_single_name_list = [];
-        this.track_straight_name_list = [];
-        this.track_switch_name_list = [];
+        this.lever_name_list = [];
+        this.signal_name_list = [];
+        this.track_name_list = [];
         for (const lever of conf.levers) {
-            if (lever.type === 'switch') {
-                this.lever_switch_name_list.push(lever.name);
-            } else if (lever.type === 'signal') {
-                this.lever_signal_name_list.push(lever.name);
-            }
+            this.lever_name_list.push(lever.name);
         }
         for (const signal of conf.signals) {
-            if (1 === signal.routes.length) {
-                this.signal_single_name_list.push(signal.name);
-            } else if (2 === signal.routes.length) {
-                this.signal_two_way_name_list.push(signal.name);
-            }
+            this.signal_name_list.push(signal.name);
         }
         for (const track of conf.tracks) {
-            if ('Straight' === track.type) {
-                this.track_straight_name_list.push(track.name);
-            } else if (('Switch_R' === track.type) || ('Switch_L' === track.type)) {
-                this.track_switch_name_list.push(track.name);
-            }
+            this.track_name_list.push(track.name);
         }
-
-
         this.refreshConfigureState();
     }
 

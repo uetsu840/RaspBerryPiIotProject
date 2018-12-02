@@ -2,9 +2,9 @@ import { Position } from './position';
 import { AssertionError } from 'assert';
 
 export enum TD_TrackType {
-    Straight,   /* 直線 */
-    Switch_R,   /* 分岐器―左分岐 */
-    Switch_L    /* 分岐器―左分岐 */
+    Straight = 0,   /* 直線 */
+    Switch_R = 1,   /* 分岐器―左分岐 */
+    Switch_L = 2    /* 分岐器―左分岐 */
 }
 
 export enum TD_SelectedRouteType {

@@ -1,13 +1,13 @@
 <!-- 
-    場内信号機
-    ・サイズ 110 x 100 
-    ・位置は中央の足元で指定する。
-    ・signal.scale_y で鏡像(主本線と副本線を反転する) を指定。
-    ・signal.rotate で回転角度を指定。
+    信号機(共通)
 -->
 <svg:g *ngIf="signal.route_num == 2">
     <!-- 
         場内信号機(two way signal)
+        ・サイズ 110 x 100 
+        ・位置は中央の足元で指定する。
+        ・signal.scale_y で鏡像(主本線と副本線を反転する) を指定。
+        ・signal.rotate で回転角度を指定。
     -->
     <symbol attr.id="{{signal.parts_symbol_name}}" viewbox="0 0 110 100">
         <line x1="2" y1="10" x2="2" y2="40" stroke="white" stroke-width="4" />

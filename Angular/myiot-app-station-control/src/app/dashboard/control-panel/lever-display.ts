@@ -7,6 +7,7 @@ enum LeverPosition {
 }
 
 export class LeverDisplay {
+    control_type: number;       /* 1:signal 2:switch */
     symbol_name_knob: string;
     symbol_name_stat: string;
     symbol_name_click: string;
@@ -21,7 +22,8 @@ export class LeverDisplay {
     rotate: number;
     name: string;
 
-    constructor(display_pos: Position, name: string) {
+    constructor(display_pos: Position, name: string, control_type: number) {
+        this.control_type = control_type;
         this.display_pos = display_pos;
         this.rotate = 0;
         this.position = LeverPosition.Center;

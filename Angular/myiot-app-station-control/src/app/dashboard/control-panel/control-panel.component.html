@@ -6,19 +6,13 @@
     <line x1="5" y1="400" x2="95" y2="400" stroke="white" stroke-width="15" />
     <line x1="805" y1="400" x2="895" y2="400" stroke="white" stroke-width="15" />
 
-    <svg:g *ngFor = "let signal_name of signal_two_way_name_list"
-        app-two-way-signal-r [signal]="signals[signal_name]" />
-    <svg:g *ngFor = "let signal_name of signal_single_name_list"
+    <svg:g *ngFor = "let signal_name of signal_name_list"
         app-two-way-signal-r [signal]="signals[signal_name]" />
 
-    <svg:g *ngFor = "let track_name of track_straight_name_list"
+    <svg:g *ngFor = "let track_name of track_name_list"
         app-track-straight [track]="tracks[track_name]"></svg:g>
-    <svg:g *ngFor = "let track_name of track_switch_name_list"
-        app-track-switch [track]="tracks[track_name]"></svg:g>
 
-    <svg:g *ngFor="let lever_name of lever_signal_name_list" 
+    <svg:g *ngFor="let lever_name of lever_name_list" 
         app-lever-signal [lever]="levers[lever_name]" (event)=onEvent()></svg:g>
-    <svg:g *ngFor="let lever_name of lever_switch_name_list" 
-        app-lever-switch [lever]="levers[lever_name]" (event)=onEvent()></svg:g>
 
 </svg>

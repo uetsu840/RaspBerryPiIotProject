@@ -1,4 +1,4 @@
-<svg:g>
+<svg:g *ngIf="lever.control_type == 1">
   <symbol id={{lever.symbol_name_knob}}>
     <line x1="25" y1="0" x2="25" y2="30" stroke="red" stroke-width="15" />
     <circle cx="25" cy="50" r="20" stroke="red" stroke-width="10" fill="dimgrey" />
@@ -27,4 +27,51 @@
       {{lever.rotate_center_pos.y}})">
   </svg:use>
 </svg:g>
+<svg:g *ngIf="lever.control_type == 2">
+  <symbol id="{{lever.symbol_name_knob}}">
+    <line x1="25" y1="0" x2="25" y2="30" stroke="yellow" stroke-width="15" />
+    <circle cx="25" cy="50" r="20" stroke="yellow" stroke-width="10" fill="dimgrey" />
+    <text x="12" y="58" font-size="20" fill="white">
+      {{lever.name}}
+    </text>
+  </symbol>
+  <symbol id="{{lever.symbol_name_click}}">
+    <rect x= "0" y="0" width="25" height="30" fill="darkgreen" 
+      (mousedown)="onMouseDownLeft()"
+      (mouseup)="onMouseUpLeft()"
+      (mouseleave)="onMouseUpLeft()"/>
+    <rect x="25" y="0" width="25" height="30" fill="darkgreen"
+      (mousedown)="onMouseDownRight()"
+      (mouseup)="onMouseUpRight()"
+      (mouseleave)="onMouseUpRight()"/>
+  </symbol>
+  <symbol id="{{lever.symbol_name_stat}}">
+    <svg:circle cx="10" cy="10" r="7" attr.fill="{{lever.normal_lamp_color}}" />
+    <svg:circle cx="40" cy="10" r="7" attr.fill="{{lever.reverse_lamp_color}}" />
+  </symbol>
+
+  <!-- click area -->
+  <svg:use
+    attr.x="{{lever.click_pos.x}}"
+    attr.y="{{lever.click_pos.y}}"
+    attr.xlink:href="#{{lever.symbol_name_click}}">
+  </svg:use>
+  <!-- lever -->
+  <svg:use 
+    attr.x="{{lever.display_pos.x}}"
+    attr.y="{{lever.display_pos.y}}"
+    attr.xlink:href="#{{lever.symbol_name_knob}}" 
+    attr.transform="rotate({{lever.rotate}} 
+                    {{lever.rotate_center_pos.x}}
+                    {{lever.rotate_center_pos.y}})">
+  </svg:use>
+  <!-- status lamp -->
+  <svg:use
+    attr.x="{{lever.stat_pos.x}}"
+    attr.y="{{lever.stat_pos.y}}"
+    attr.xlink:href="#{{lever.symbol_name_stat}}">
+  </svg:use>
+</svg:g>
+
+
 

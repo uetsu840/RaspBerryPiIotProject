@@ -3,9 +3,6 @@
     <text x="400" y="100" fill="white" font-size="40" text-decoration="underline">
         {{station_config.station_name}}</text>
 
-    <line x1="5" y1="400" x2="95" y2="400" stroke="white" stroke-width="15" />
-    <line x1="805" y1="400" x2="895" y2="400" stroke="white" stroke-width="15" />
-
     <svg:g *ngFor = "let signal_name of signal_name_list"
         app-two-way-signal-r [signal]="signals[signal_name]" />
 

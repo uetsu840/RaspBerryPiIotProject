@@ -70,22 +70,20 @@ def customShadowCallback_Delete(payload, responseStatus, token):
 # 定位・反位(英語)
 # normal position･reverse position
 
-
-# name, description, status/lever_ofs
-switch_list = [["31", "1-2番線幡生方", 0],
-               ["21", "1-2番線京都方", 1]]
-signal_list = [["2R", "1番上り場内", 0],
-               ["3R", "2番上り出発", 1],
-               ["4R", "1番上り場内", 2],
-               ["5R", "2番上り出発", 3],
-               ["2L", "1番下り場内", 4],
-               ["3L", "2番下り出発", 5],
-               ["4L", "1番下り場内", 6],
-               ["5L", "2番下り出発", 7]]
-section_list = [["31T", "分岐器31", 0],
-                ["21T", "分岐器21", 1],
-                ["2R", "2番線",     2],
-                ["5R", "1番線",     3]]
+switch_list = [["31", "1-2番線幡生方"],
+               ["21", "1-2番線京都方"]]
+signal_list = [["2R", "1番上り場内"],
+               ["3R", "2番上り出発"],
+               ["4R", "1番上り場内"],
+               ["5R", "2番上り出発"],
+               ["2L", "1番下り場内"],
+               ["3L", "2番下り出発"],
+               ["4L", "1番下り場内"],
+               ["5L", "2番下り出発"]]
+section_list = [["31T", "分岐器31"],
+                ["21T", "分岐器21"],
+                ["2R", "2番線"],
+                ["5R", "1番線"]]
 
 def makeSwitchStateObject(id, switch, position):
     switch = {
@@ -192,20 +190,25 @@ def setSectionStatusByName(state_val, section_name, state):
 def updateStationStatus():
     global State_Values
     global CodesysStationStatus
-    global switch_list
-    global signal_list
-    global section_list
     
     CodesysStationStatus.update()
+    setSignalStatusByName(State_Values, "2R", CodesysStationStatus.signal_status[0])
+    setSignalStatusByName(State_Values, "3R", CodesysStationStatus.signal_status[1])
+    setSignalStatusByName(State_Values, "4R", CodesysStationStatus.signal_status[2])
+    setSignalStatusByName(State_Values, "5R", CodesysStationStatus.signal_status[3])
+    setSignalStatusByName(State_Values, "2L", CodesysStationStatus.signal_status[4])
+    setSignalStatusByName(State_Values, "3L", CodesysStationStatus.signal_status[5])
+    setSignalStatusByName(State_Values, "4L", CodesysStationStatus.signal_status[6])
+    setSignalStatusByName(State_Values, "5L", CodesysStationStatus.signal_status[7])
 
-    for signal in signal_list:
-        setSignalStatusByName(State_Values, signal[0], CodesysStationStatus.signal_status[signal[2]])
-        
-    for switch in switch_list:
-        setSwitchStatusByName(State_Values, switch[0], CodesysStationStatus.switch_status[switch[2]])
-        
-    for section in section_list:
-        setSectionStatusByName(State_Values, section[0], CodesysStationStatus.section_status[section[2]])
+    setSwitchStatusByName(State_Values, "31", CodesysStationStatus.switch_status[0])
+    setSwitchStatusByName(State_Values, "21", CodesysStationStatus.switch_status[1])
+    
+    setSectionStatusByName(State_Values, "31T", CodesysStationStatus.section_status[0])
+    setSectionStatusByName(State_Values, "21T", CodesysStationStatus.section_status[1])
+    setSectionStatusByName(State_Values, "2R", CodesysStationStatus.section_status[2])
+    setSectionStatusByName(State_Values, "5R", CodesysStationStatus.section_status[3])
+    
 
 
 # In[9]:
@@ -233,26 +236,30 @@ def searchSignalLeverPosByName(state_val, name):
 def updateCtrlStatus():
     global State_Values
     global CodesysControlStatus
-    global switch_list
-    global signal_list
-    global section_list
 
     signal_lever_status = [0 for i in range(16)]
     switch_lever_nml = [0 for i in range(16)]
     switch_lever_rev = [0 for i in range(16)]
-
-    for signal in signal_list:
-        signal_lever_status[signal[2]] = searchSignalLeverPosByName(State_Values, signal[0])
-
-    for switch in switch_list:
-        switch_lever_nml[switch[2]] = searchSwitchLeverPosByName(State_Values, switch[0]+"Nml")
-        switch_lever_rev[switch[2]] = searchSwitchLeverPosByName(State_Values, switch[0]+"Rev")
+    
+    signal_lever_status[0] = searchSignalLeverPosByName(State_Values, "2R")
+    signal_lever_status[1] = searchSignalLeverPosByName(State_Values, "3R")
+    signal_lever_status[2] = searchSignalLeverPosByName(State_Values, "4R")
+    signal_lever_status[3] = searchSignalLeverPosByName(State_Values, "5R")
+    signal_lever_status[4] = searchSignalLeverPosByName(State_Values, "2L")
+    signal_lever_status[5] = searchSignalLeverPosByName(State_Values, "3L")
+    signal_lever_status[6] = searchSignalLeverPosByName(State_Values, "4L")
+    signal_lever_status[7] = searchSignalLeverPosByName(State_Values, "5L")
+        
+    switch_lever_nml[0] = searchSwitchLeverPosByName(State_Values, "31Nml")
+    switch_lever_nml[1] = searchSwitchLeverPosByName(State_Values, "21Nml")
+    switch_lever_rev[0] = searchSwitchLeverPosByName(State_Values, "31Rev")
+    switch_lever_rev[1] = searchSwitchLeverPosByName(State_Values, "21Rev")
     
     CodesysControlStatus.update(signal_lever_status, switch_lever_nml, switch_lever_rev)
     
 
 
-# In[ ]:
+# In[10]:
 
 
 # Custom Shadow callback
@@ -272,7 +279,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
     
 
 
-# In[ ]:
+# In[11]:
 
 
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient
@@ -318,7 +325,8 @@ deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
 # Update shadow in a loop
 switch_loop_count = 0
 signal_loop_count = 0
-for i in range(1000000):
+for i in range(300):
+    print('.', end='')
     switch_loop_count += 1
     signal_loop_count += 1
     updateStationStatus()

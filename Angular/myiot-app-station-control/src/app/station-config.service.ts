@@ -15,23 +15,23 @@ const httpOptions = {
 })
 
 export class StationConfigService {
-    private StationConfigUrl = '/station_config.json';  // URL to web api
+    private StationConfigUrl = '/station_config_kitasatsu.json';  // URL to web api
 
     constructor(
         private http: HttpClient,
         private messageService: MessageService) { }
 
-    /* GET signal status from the server */
+    /* GET station config from the server */
     getStationConfig(): Observable<StationConfig> {
         return this.http.get<StationConfig>(this.StationConfigUrl).pipe(
             tap(_ => this.log(`fetched station config`)),
-            catchError(this.handleError<StationConfig>(`getSignal`))
+            catchError(this.handleError<StationConfig>(`getStationControl`))
         );
     }
 
     /** Log a SignalService message with the MessageService */
     private log(message: string) {
-        this.messageService.add('SignalService: ' + message);
+        this.messageService.add('StationConfigService: ' + message);
     }
 
     /**

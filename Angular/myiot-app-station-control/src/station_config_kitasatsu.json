@@ -270,6 +270,26 @@
             "length": 490,
             "type": "Straight",
             "rotate": 0
+        },
+        {
+            "name": "100",
+            "pos": {
+                "x": 5,
+                "y": 400
+            },
+            "length": 90,
+            "type": "Straight",
+            "rotate": 0
+        },
+        {
+            "name": "101",
+            "pos": {
+                "x": 805,
+                "y": 400
+            },
+            "length": 90,
+            "type": "Straight",
+            "rotate": 0
         }
     ]
 }

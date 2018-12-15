@@ -20,7 +20,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/station_config.json"
+              "src/station_config_kitasatsu.json",
+              "src/station_config_shibayama.json"
             ],
             "styles": [
               "src/styles.css"

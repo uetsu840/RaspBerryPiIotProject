@@ -15,7 +15,8 @@ const httpOptions = {
 })
 
 export class StationConfigService {
-    private StationConfigUrl = '/station_config_kitasatsu.json';  // URL to web api
+    private StationConfigUrl = '/station_config_shibayama.json';  // URL to web api
+//    private StationConfigUrl = '/station_config_kitasatsu.json';  // URL to web api
 
     constructor(
         private http: HttpClient,

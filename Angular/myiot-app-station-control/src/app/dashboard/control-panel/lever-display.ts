@@ -31,10 +31,10 @@ export class LeverDisplay {
         this.symbol_name_knob = 'lever_knob' + name;
         this.symbol_name_stat = 'lever_status' + name;
         this.symbol_name_click = 'lever_click' + name;
-        this.text_pos           = new Position(display_pos.x + 15, display_pos.y + 105);
-        this.stat_pos           = new Position(display_pos.x,      display_pos.y - 20);
-        this.click_pos          = new Position(display_pos.x,      display_pos.y);
-        this.rotate_center_pos  = new Position(display_pos.x + 25, display_pos.y + 50);
+        this.text_pos = new Position(display_pos.x + 15, display_pos.y + 105);
+        this.stat_pos = new Position(display_pos.x, display_pos.y - 20);
+        this.click_pos = new Position(display_pos.x, display_pos.y);
+        this.rotate_center_pos = new Position(display_pos.x + 25, display_pos.y + 50);
     }
 
     private updateRotate() {
@@ -88,9 +88,9 @@ export class LeverDisplay {
         return 0;
     }
 
-    updatePosition(position) {
+    updatePosition(position: number) {
         if (position === 0) {
-            this.normal_lamp_color  = 'lightgreen';
+            this.normal_lamp_color = 'lightgreen';
             this.reverse_lamp_color = 'dimgrey';
         }
         if (position === 1) {
@@ -98,4 +98,5 @@ export class LeverDisplay {
             this.reverse_lamp_color = 'red';
         }
     }
+
 }

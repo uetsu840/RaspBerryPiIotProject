@@ -53,7 +53,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
 
     private generateLever(lever_conf: LeverConfig) {
         let control_type: number;
-        if ('signal' ===  lever_conf.type) {
+        if ('signal' === lever_conf.type) {
             control_type = 1;
         } else if ('switch' === lever_conf.type) {
             control_type = 2;
@@ -117,7 +117,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
         if (changes.state_switches) {
             /* update switch state */
             for (const lever of conf.levers) {
-                if ('switch' ===  lever.type) {
+                if ('switch' === lever.type) {
                     this.updateSwitchStateByName(this.state_switches, lever.name);
                 }
             }
@@ -166,6 +166,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
         state_signals: Signal[],
         display_signal: SignalDisplay,
         name: string) {
+
         for (let i = 0; i < state_signals.length; i++) {
             if (state_signals[i].name === name) {
                 display_signal.updateRouteState(name, state_signals[i].position);

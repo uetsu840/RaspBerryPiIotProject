@@ -29,21 +29,15 @@
 </svg:g>
 <svg:g *ngIf="lever.control_type == 2">
   <symbol id="{{lever.symbol_name_knob}}">
-    <line x1="25" y1="0" x2="25" y2="30" stroke="yellow" stroke-width="15" />
-    <circle cx="25" cy="50" r="20" stroke="yellow" stroke-width="10" fill="dimgrey" />
+    <line x1="25" y1="0" x2="25" y2="30" stroke="#464646" stroke-width="15" />
+    <circle cx="25" cy="50" r="20" stroke="#464646" stroke-width="10" fill="dimgrey" />
     <text x="12" y="58" font-size="20" fill="white">
       {{lever.name}}
     </text>
   </symbol>
   <symbol id="{{lever.symbol_name_click}}">
-    <rect x= "0" y="0" width="25" height="30" fill="darkgreen" 
-      (mousedown)="onMouseDownLeft()"
-      (mouseup)="onMouseUpLeft()"
-      (mouseleave)="onMouseUpLeft()"/>
-    <rect x="25" y="0" width="25" height="30" fill="darkgreen"
-      (mousedown)="onMouseDownRight()"
-      (mouseup)="onMouseUpRight()"
-      (mouseleave)="onMouseUpRight()"/>
+    <rect x="0" y="0" width="25" height="30" fill="darkgreen" (click)="onClickLeft()" />
+    <rect x="25" y="0" width="25" height="30" fill="darkgreen" (click)="onClickRight()" />
   </symbol>
   <symbol id="{{lever.symbol_name_stat}}">
     <svg:circle cx="10" cy="10" r="7" attr.fill="{{lever.normal_lamp_color}}" />

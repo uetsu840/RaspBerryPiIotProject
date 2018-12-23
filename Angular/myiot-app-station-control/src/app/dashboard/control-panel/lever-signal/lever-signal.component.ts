@@ -15,7 +15,7 @@ export class LeverSignalComponent implements OnInit {
     ngOnInit() {
     }
 
-    /* 信号機用(クリック検出) */
+    /* クリック検出 */
     onClickLeft() {
         this.lever.toLeft();
         this.event.emit();
@@ -23,27 +23,6 @@ export class LeverSignalComponent implements OnInit {
 
     onClickRight() {
         this.lever.toRight();
-        this.event.emit();
-    }
-
-    /* 転轍機用(レベル検出) */
-    onMouseDownLeft() {
-        this.lever.toLeft();
-        this.event.emit();
-    }
-
-    onMouseUpLeft() {
-        this.lever.toCenter();
-        this.event.emit();
-    }
-
-    onMouseDownRight() {
-        this.lever.toRight();
-        this.event.emit();
-    }
-
-    onMouseUpRight() {
-        this.lever.toCenter();
         this.event.emit();
     }
 }

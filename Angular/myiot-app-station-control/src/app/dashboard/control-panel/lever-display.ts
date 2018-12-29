@@ -35,7 +35,7 @@ export class LeverDisplay {
             this.lever_color = '#464646';
         } else if ('route' === lever_type) {
             /* 開通てこ */
-            this.control_type = 1;
+            this.control_type = 2;
             this.lever_color = 'yellow';
         } else {
             console.log('Invalid Lever Type');

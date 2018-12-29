@@ -96,7 +96,7 @@
         {
             "name": "2",
             "pos": {
-                "x": 600,
+                "x": 800,
                 "y": 575
             },
             "type": "signal",
@@ -125,7 +125,7 @@
                 },
                 {
                     "target": "21Rev",
-                    "idx": 2
+                    "idx": 1
                 }   
             ]
         },
@@ -139,7 +139,7 @@
             "control": [
                 {
                     "target": "31Nml",
-                    "idx": 1
+                    "idx": 2
                 },
                 {
                     "target": "31Rev",
@@ -150,18 +150,36 @@
         {
             "name": "11",
             "pos": {
+                "x": 600,
+                "y": 575
+            },
+            "type": "route",
+            "control": [
+                {
+                    "target": "11Nml",
+                    "idx": 4
+                },
+                {
+                    "target": "11Rev",
+                    "idx": 5
+                }   
+            ]
+        },
+        {
+            "name": "12",
+            "pos": {
                 "x": 400,
                 "y": 575
             },
             "type": "route",
             "control": [
                 {
-                    "target": "11L",
-                    "idx": 5
+                    "target": "12Nml",
+                    "idx": 6
                 },
                 {
-                    "target": "11R",
-                    "idx": 4
+                    "target": "12Rev",
+                    "idx": 7
                 }   
             ]
         }

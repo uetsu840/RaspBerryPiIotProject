@@ -112,6 +112,9 @@ export class ControlPanelComponent implements OnInit, OnChanges {
                 if ('switch' === lever.type) {
                     this.updateSwitchStateByName(this.state_switches, lever.name);
                 }
+                if ('route' === lever.type) {
+                    this.updateRouteStateByName(this.state_switches, lever.name);
+                }
             }
         }
         if (changes.state_signals) {
@@ -150,6 +153,21 @@ export class ControlPanelComponent implements OnInit, OnChanges {
             }
         }
     }
+
+    /**
+     *     update state of route
+     */
+    private updateRouteStateByName(
+        state_switches: Switch[],
+        name: string) {
+        for (let i = 0; i < state_switches.length; i++) {
+            if (state_switches[i].name === name) {
+                this.levers[name].updatePosition(state_switches[i].position);
+                break;
+            }
+        }
+    }
+
 
     /**
     *    update state of signals
@@ -229,10 +247,10 @@ export class ControlPanelComponent implements OnInit, OnChanges {
             const target_0 = lever.control[0].target;
             const target_1 = lever.control[1].target;
 
-            if ((lever.type === 'route') || (lever.type === 'signal')) {
+            if (lever.type === 'signal') {
                 this.addOutput(control_panel_output.SignalControl, idx_0, target_0, lever.name, false);
                 this.addOutput(control_panel_output.SignalControl, idx_1, target_1, lever.name, true);
-            } else if (lever.type === 'switch') {
+            } else if ((lever.type === 'route') || (lever.type === 'switch')) {
                 this.addOutput(control_panel_output.SwitchControl, idx_0, target_0, lever.name, false);
                 this.addOutput(control_panel_output.SwitchControl, idx_1, target_1, lever.name, true);
             } else {

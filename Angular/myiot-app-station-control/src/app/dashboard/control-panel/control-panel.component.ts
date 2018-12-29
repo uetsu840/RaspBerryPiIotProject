@@ -52,18 +52,10 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     }
 
     private generateLever(lever_conf: LeverConfig) {
-        let control_type: number;
-        if ('signal' === lever_conf.type) {
-            control_type = 1;
-        } else if ('switch' === lever_conf.type) {
-            control_type = 2;
-        } else {
-            console.log('Invalid Lever Type');
-        }
         this.levers[lever_conf.name] = new LeverDisplay(
             lever_conf.pos,
             lever_conf.name,
-            control_type
+            lever_conf.type
         );
     }
 
@@ -237,7 +229,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
             const target_0 = lever.control[0].target;
             const target_1 = lever.control[1].target;
 
-            if (lever.type === 'signal') {
+            if ((lever.type === 'route') || (lever.type === 'signal')) {
                 this.addOutput(control_panel_output.SignalControl, idx_0, target_0, lever.name, false);
                 this.addOutput(control_panel_output.SignalControl, idx_1, target_1, lever.name, true);
             } else if (lever.type === 'switch') {

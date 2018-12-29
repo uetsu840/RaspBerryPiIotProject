@@ -3,7 +3,7 @@ export class Switch {
     name: string;
     description: string;
     position: number;
-    locked: number;
+    cd: number;
     display_style_normal:  string;
     display_style_reverse: string;
 }

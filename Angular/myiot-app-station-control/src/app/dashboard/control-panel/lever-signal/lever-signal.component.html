@@ -1,8 +1,8 @@
 <svg:g *ngIf="lever.control_type == 1">
   <symbol id={{lever.symbol_name_knob}}>
-    <line x1="25" y1="0" x2="25" y2="30" stroke="red" stroke-width="15" />
-    <circle cx="25" cy="50" r="20" stroke="red" stroke-width="10" fill="dimgrey" />
-    <text x="17" y="58" font-size="20" fill="white">
+    <line x1="25" y1="0" x2="25" y2="30" attr.stroke="{{lever.lever_color}}" stroke-width="15" />
+    <circle cx="25" cy="50" r="20" attr.stroke="{{lever.lever_color}}" stroke-width="10" fill="dimgrey" />
+    <text attr.x={{lever.lever_name_pos_x}} y="58" font-size="20" fill="white">
       {{lever.name}}
     </text>
   </symbol>
@@ -29,9 +29,11 @@
 </svg:g>
 <svg:g *ngIf="lever.control_type == 2">
   <symbol id="{{lever.symbol_name_knob}}">
-    <line x1="25" y1="0" x2="25" y2="30" stroke="#464646" stroke-width="15" />
-    <circle cx="25" cy="50" r="20" stroke="#464646" stroke-width="10" fill="dimgrey" />
-    <text x="12" y="58" font-size="20" fill="white">
+    <line x1="25" y1="0" x2="25" y2="30" stroke="dimgrey" stroke-width="15" />
+    <circle cx="25" cy="50" r="20" stroke="dimgrey" stroke-width="10" fill="dimgrey" />
+    <line x1="25" y1="0" x2="25" y2="30" attr.stroke="{{lever.lever_color}}" stroke-width="14" />
+    <circle cx="25" cy="50" r="19" attr.stroke="{{lever.lever_color}}" stroke-width="10" fill="dimgrey" />
+    <text attr.x={{lever.lever_name_pos_x}} y="58" font-size="20" fill="white">
       {{lever.name}}
     </text>
   </symbol>

@@ -21,9 +21,31 @@ export class LeverDisplay {
     display_pos: Position;
     rotate: number;
     name: string;
+    lever_color: string;
+    lever_name_pos_x: number;
 
-    constructor(display_pos: Position, name: string, control_type: number) {
-        this.control_type = control_type;
+    constructor(display_pos: Position, name: string, lever_type: string) {
+        if ('signal' === lever_type) {
+            /* 信号てこ */
+            this.control_type = 1;
+            this.lever_color = 'red';
+        } else if ('switch' === lever_type) {
+            /* 転轍てこ */
+            this.control_type = 2;
+            this.lever_color = '#464646';
+        } else if ('route' === lever_type) {
+            /* 開通てこ */
+            this.control_type = 1;
+            this.lever_color = 'yellow';
+        } else {
+            console.log('Invalid Lever Type');
+        }
+        if (1 === name.length) {
+            this.lever_name_pos_x = 17;
+        } else {
+            this.lever_name_pos_x = 12;
+        }
+
         this.display_pos = display_pos;
         this.rotate = 0;
         this.position = LeverPosition.Center;
